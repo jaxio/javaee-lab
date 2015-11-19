@@ -73,7 +73,7 @@ public abstract class ${output.currentClass}<E extends Identifiable<PK>, PK exte
     }
 
     @Override
-    public List<E> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,String> filters) {
+    public List<E> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
         E example = searchForm.getEntity();
         SearchParameters sp = populateSearchParameters(first, pageSize, sortField, sortOrder, filters);        
         setRowCount(repository.findCount(example, sp));
@@ -98,7 +98,7 @@ public abstract class ${output.currentClass}<E extends Identifiable<PK>, PK exte
     * Applies the passed parameters to the passed SearchParameters.
     * @return the passed searchParameters
     */
-   protected SearchParameters populateSearchParameters(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,String> filters) {
+   protected SearchParameters populateSearchParameters(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
        SearchParameters sp = searchForm.toSearchParameters();
        sp.setFirst(bypassFirstOffset ? 0 : first);
        bypassFirstOffset = false;

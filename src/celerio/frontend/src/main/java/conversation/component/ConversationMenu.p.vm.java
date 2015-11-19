@@ -18,9 +18,9 @@ $output.require("java.io.Serializable")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.context.Conversation")##
 $output.require("javax.inject.Inject")##
-$output.require("org.primefaces.component.menuitem.MenuItem")##
-$output.require("org.primefaces.model.DefaultMenuModel")##
-$output.require("org.primefaces.model.MenuModel")##
+$output.require("org.primefaces.component.menuitem.UIMenuItem")##
+$output.require("org.primefaces.model.menu.DefaultMenuModel")##
+$output.require("org.primefaces.model.menu.MenuModel")##
 $output.require($WebConversation, "ConversationManager")##
 $output.require($WebConversation, "ConversationBean")##
 
@@ -41,7 +41,7 @@ $serialVersionUID
         ConversationBean conversation = conversationManager.getCurrentConversation();
 
         for (Map<String, String> navigationInfo : conversationManager.navigationInfoMaps().values()) {
-            MenuItem htmlMenuItem = new MenuItem();
+            UIMenuItem htmlMenuItem = new UIMenuItem();
             htmlMenuItem.setValue(navigationInfo.get("LABEL"));
             htmlMenuItem.setUrl(navigationInfo.get("URL"));
 
@@ -50,7 +50,7 @@ $serialVersionUID
                 htmlMenuItem.setDisabled(true);
             }
 
-            model.addMenuItem(htmlMenuItem);
+            model.addElement(htmlMenuItem);
         }
 
         return model;

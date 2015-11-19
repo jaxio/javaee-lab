@@ -23,6 +23,7 @@ $output.require("java.util.Collection")##
 $output.require("javax.faces.context.ExternalContext")##
 $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.inject.Inject")##
+$output.require("com.jaxio.jpa.querybyexample.LabelizedEnum")##
 $output.require("org.apache.poi.hssf.usermodel.HSSFWorkbook")##
 $output.require("org.apache.poi.ss.usermodel.Cell")##
 $output.require("org.apache.poi.ss.usermodel.CellStyle")##
@@ -34,8 +35,8 @@ $output.require("org.apache.poi.ss.usermodel.Sheet")##
 $output.require("org.apache.poi.ss.usermodel.Workbook")##
 $output.require("java.time.LocalDate")##
 $output.require("java.time.LocalDateTime")##
+$output.require("java.time.ZoneId")##
 $output.require($Context, "UserContext")##
-$output.require($EnumModelSupport, "LabelizedEnum")##
 $output.require("com.jaxio.jpa.querybyexample.PropertySelector")##
 $output.require("com.jaxio.jpa.querybyexample.Range")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
@@ -62,6 +63,8 @@ public abstract class ${output.currentClass}<E> implements Serializable {
     private transient CellStyle leftHeaderStyle;
     private transient CellStyle dateStyle;
     private transient CellStyle dateTimeStyle;
+    private transient CellStyle timeStyle;
+    
 
     public ${output.currentClass}() {
         // mandatory no-args constructor to make this bean proxyable
@@ -84,6 +87,7 @@ public abstract class ${output.currentClass}<E> implements Serializable {
         leftHeaderStyle = null;
         dateStyle = null;
         dateTimeStyle = null;
+        timeStyle = null;
     }
 
     public void useResultsSheet() {
@@ -306,15 +310,25 @@ $output.require("com.jaxio.jpa.querybyexample.TermSelector")##
         }
     }
 
+    protected void setTime(int row, int col, Date value) {
+        if (value != null) {
+            Cell cell = getCell(row, col);
+            cell.setCellValue(value);
+            cell.setCellStyle(getTimeStyle());
+        }
+    }
+    
     protected void setValue(int row, int col, LocalDate value) {
         if (value != null) {
-            setValue(row, col, value.toDate());
+            Date date = Date.from(value.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+            setValue(row, col, date);
         }
     }
 
     protected void setValue(int row, int col, LocalDateTime value) {
         if (value != null) {
-            setDateTime(row, col, value.toDate());
+            Date date = Date.from(value.atZone(ZoneId.systemDefault()).toInstant());
+            setDateTime(row, col, date);
         }
     }
 
@@ -419,6 +433,15 @@ $output.require("com.jaxio.jpa.querybyexample.TermSelector")##
         return dateTimeStyle;
     }
 
+    protected CellStyle getTimeStyle() {
+        if (timeStyle == null) {
+            timeStyle = wb.createCellStyle();
+            timeStyle.setDataFormat(dataFormat.getFormat(msg.getProperty("excel_time_format")));
+        }
+
+        return timeStyle;
+    }
+    
     protected void autoSizeColumns() {
         useResultsSheet();
         int lastCellNum = getRow(0).getLastCellNum();

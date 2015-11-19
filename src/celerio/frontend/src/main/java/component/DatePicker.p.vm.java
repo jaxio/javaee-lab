@@ -77,7 +77,7 @@ public class $output.currentClass extends UIInput implements NamingContainer {
         }
 
         year.setValue(normalize(localDate.getYear()));
-        month.setValue(normalize(localDate.getMonthOfYear()));
+        month.setValue(normalize(localDate.getMonthValue()));
         day.setValue(normalize(localDate.getDayOfMonth()));
     }    
 
@@ -87,10 +87,10 @@ public class $output.currentClass extends UIInput implements NamingContainer {
         }
 
         year.setValue(normalize(localDateTime.getYear()));
-        month.setValue(normalize(localDateTime.getMonthOfYear()));
+        month.setValue(normalize(localDateTime.getMonthValue()));
         day.setValue(normalize(localDateTime.getDayOfMonth()));
-        hour.setValue(normalize(localDateTime.getHourOfDay()));
-        min.setValue(normalize(localDateTime.getMinuteOfHour()));
+        hour.setValue(normalize(localDateTime.getHour()));
+        min.setValue(normalize(localDateTime.getMinute()));
     }
 
     private void encode(UIInput year, UIInput month, UIInput day, UIInput hour, UIInput min, Date date) {

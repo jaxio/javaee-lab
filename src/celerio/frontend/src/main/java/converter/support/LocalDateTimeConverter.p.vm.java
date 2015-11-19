@@ -30,7 +30,7 @@ $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 public class LocalDateTimeConverter implements Converter, PartialStateHolder {
 
     private static final String pattern = "yyyy-MM-dd HH:mm";
-    private DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
     /**
      * <code>p:calendar</code> must to use the same pattern as the converter, so we provide it here.
@@ -45,7 +45,7 @@ public class LocalDateTimeConverter implements Converter, PartialStateHolder {
             return null;
         }
 
-        return formatter.withLocale(LocaleHolder.getLocale()).parseDateTime(value).toLocalDateTime();
+        return LocalDateTime.parse(value, formatter);
     }
 
     @Override
@@ -55,12 +55,12 @@ public class LocalDateTimeConverter implements Converter, PartialStateHolder {
         }
 
         if (value instanceof LocalDateTime) {
-            return formatter.withLocale(LocaleHolder.getLocale()).print((LocalDateTime) value);
+            return ((LocalDateTime) value).format(formatter);
         }
 
-        throw new IllegalArgumentException("Expecting a LocalDateTime instance but received "
-                + value.getClass().getName());
+        throw new IllegalArgumentException("Expecting a LocalDateTime instance but received " + value.getClass().getName());
     }
+
     // PartialStateHolder implementation
 
     @Override

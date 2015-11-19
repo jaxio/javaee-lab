@@ -25,7 +25,8 @@ $output.require("javax.enterprise.context.Conversation")##
 $output.require("javax.enterprise.inject.Instance")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.servlet.http.HttpServletResponse")##
-$output.require("org.omnifaces.util.Faces")##
+$output.require("javax.faces.context.FacesContext")##
+
 
 /**
  * The conversation manager is responsible for creating conversations, managing their lifecycle and calling the conversation listeners.
@@ -173,7 +174,7 @@ $serialVersionUID
         conversationEnding(conversation);
         conversation.getRawConversation().end();
         
-        HttpServletResponse response = ((HttpServletResponse)Faces.getExternalContext().getResponse());
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         System.out.println(response);
 
         navigationInfoMaps.remove(id);

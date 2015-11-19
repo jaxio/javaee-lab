@@ -283,23 +283,23 @@
 
         <!-- ~~~ -->
         <!-- WEB -->
-        <!-- ~~~
+        <!-- ~~~ -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>${primefaces.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>omnifaces</artifactId>
-            <version>1.5</version>
-        </dependency>
-        <dependency>
+        <dependency><!-- optional theme (see also web.xml to enable it) -->
             <groupId>org.primefaces.themes</groupId>
             <artifactId>bootstrap</artifactId>
             <version>${primefaces-themes.version}</version>
         </dependency>
--->
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>2.1</version>
+        </dependency>
+
         <!-- ~~~~ -->
         <!-- TEST -->
         <!-- ~~~~ -->
@@ -325,7 +325,7 @@
 
     <!-- ~~~~~~~~~~~~ -->
     <!-- REPOSITORIES -->
-    <!-- ~~~~~~~~~~~~
+    <!-- ~~~~~~~~~~~~ -->
     <repositories>
         <repository>
             <id>primefaces</id>
@@ -333,7 +333,6 @@
             <layout>default</layout>
         </repository>
     </repositories>
-    -->
     <build>
         <!-- Maven will append the version to the finalName (which is the name
             given to the generated war, and hence the context root) -->
@@ -589,18 +588,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <repositories>
-                <repository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </pluginRepository>
-            </pluginRepositories>
         </profile>
         <profile>
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -625,18 +612,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <repositories>
-                <repository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </pluginRepository>
-            </pluginRepositories>
         </profile>
         <profile>
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -660,18 +635,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <repositories>
-                <repository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>jaxio-repository</id>
-                    <url>http://maven.jaxio.com/repository</url>
-                </pluginRepository>
-            </pluginRepositories>
         </profile>
     </profiles>
 </project>
