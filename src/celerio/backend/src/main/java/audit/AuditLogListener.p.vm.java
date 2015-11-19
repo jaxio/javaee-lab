@@ -33,7 +33,7 @@ $output.require("org.hibernate.event.spi.PreUpdateEventListener")##
 $output.require("org.hibernate.persister.entity.EntityPersister")##
 $output.require($Service, "AuditLogService")##
 $output.require($Context, "UserContext")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($project.auditLog.model)##
 $output.require($Service, "AuditEvent")##
 $output.require($Service, "AuditLogService")##

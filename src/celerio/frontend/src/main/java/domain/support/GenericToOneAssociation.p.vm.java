@@ -15,7 +15,7 @@
 $output.java($WebModelSupport, "GenericToOneAssociation")##
 
 $output.require("java.io.Serializable")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($WebConversation, "ConversationCallBack")##
 $output.require($WebPermissionSupport, "GenericPermission")##
 $output.require($WebUtil, "MessageUtil")##
@@ -24,7 +24,7 @@ $output.requireStatic("com.google.common.base.CaseFormat.UPPER_CAMEL")##
 $output.require("java.util.Collection")##
 $output.require("javax.persistence.CascadeType")##
 $output.require("javax.persistence.metamodel.SingularAttribute")##
-$output.require($RepositorySupport, "MetamodelUtil")##
+$output.require("com.jaxio.jpa.querybyexample.MetamodelUtil")##
 
 /**
  * Controller that allows you to manage an entity's x-to-one association.

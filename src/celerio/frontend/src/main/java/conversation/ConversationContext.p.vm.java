@@ -18,7 +18,7 @@ $output.requireStatic("com.google.common.collect.Lists.newArrayList")##
 $output.requireStatic("com.google.common.collect.Sets.newHashSet")##
 $output.requireStatic("com.google.common.collect.Maps.newHashMap")##
 $output.requireStatic("java.util.Collections.unmodifiableSet")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require("java.io.Serializable")##
 $output.require("java.util.Collection")##
 $output.require("java.util.Set")##

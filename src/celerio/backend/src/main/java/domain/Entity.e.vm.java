@@ -50,7 +50,7 @@ $annotation
 #end
 #if($entity.isRoot())
 $output.require("java.io.Serializable")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 public#if ($output.isAbstract()) abstract#{end} class ${output.currentClass}${entity.spaceAndExtendsStatement} implements Identifiable<$entity.primaryKey.type>${entity.commaAndImplementedInterfaces}, Serializable {
 #else
 $output.require($entity.parent.model)##

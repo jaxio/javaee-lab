@@ -27,12 +27,12 @@ $output.require("org.omnifaces.util.Faces")##
 $output.require("org.primefaces.event.SelectEvent")##
 $output.require("org.primefaces.model.LazyDataModel")##
 $output.require("org.primefaces.model.SortOrder")##
-$output.require($RepositorySupport, "OrderBy")##
-$output.require($RepositorySupport, "OrderByDirection")##
-$output.require($RepositorySupport, "SearchParameters")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.OrderBy")##
+$output.require("com.jaxio.jpa.querybyexample.OrderByDirection")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
-$output.require($RepositorySupport, "GenericRepository")##
+$output.require("com.jaxio.jpa.querybyexample.GenericRepository")##
 $output.require($Util, "ResourcesUtil")##
 $output.require($WebConversation, "ConversationContext")##
 $output.require($WebConversation, "ConversationCallBack")##

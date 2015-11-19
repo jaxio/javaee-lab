@@ -36,8 +36,8 @@ $output.require("java.time.LocalDate")##
 $output.require("java.time.LocalDateTime")##
 $output.require($Context, "UserContext")##
 $output.require($EnumModelSupport, "LabelizedEnum")##
-$output.require($RepositorySupport, "PropertySelector")##
-$output.require($RepositorySupport, "Range")##
+$output.require("com.jaxio.jpa.querybyexample.PropertySelector")##
+$output.require("com.jaxio.jpa.querybyexample.Range")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
 $output.require($Util, "ResourcesUtil")##
 $output.require($WebUtil, "DownloadUtil")##
@@ -214,7 +214,7 @@ public abstract class ${output.currentClass}<E> implements Serializable {
         }
     }
 #if($project.hibernateSearchUsed)
-$output.require($RepositorySupport, "TermSelector")##
+$output.require("com.jaxio.jpa.querybyexample.TermSelector")##
 
     protected void setTermSelector(int row, int col, String labelKey, TermSelector selector) {
         setLeftHeader(row, col++, labelKey);

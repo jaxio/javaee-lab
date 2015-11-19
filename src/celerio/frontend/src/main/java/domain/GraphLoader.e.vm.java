@@ -22,7 +22,7 @@ $output.require("javax.inject.Inject")##
 $output.require($entity.model)##
 $output.require($entity.repository)##
 $output.require($entity.root.primaryKey)##
-$output.require($RepositorySupport, "EntityGraphLoader")##
+$output.require("com.jaxio.jpa.querybyexample.EntityGraphLoader")##
 
 /**
  * Preloads the {@link $entity.model.type} associations required by the view layer.

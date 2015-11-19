@@ -16,11 +16,11 @@ $output.java($WebModelSupport, "GenericSearchForm")##
 $output.require("java.io.Serializable")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.annotation.PostConstruct")##
-$output.require($RepositorySupport, "SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
 #if($project.hibernateSearchUsed)
-$output.require($RepositorySupport, "TermSelector")##
+$output.require("com.jaxio.jpa.querybyexample.TermSelector")##
 #end
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($WebConversation, "ConversationBean")##
 $output.require($WebConversation, "ConversationContext")##
 $output.require($WebConversation, "ConversationManager")##

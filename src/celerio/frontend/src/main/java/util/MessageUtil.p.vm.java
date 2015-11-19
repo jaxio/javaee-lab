@@ -22,7 +22,7 @@ $output.require("javax.faces.application.FacesMessage")##
 $output.require("javax.faces.application.FacesMessage.Severity")##
 $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.inject.Inject")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
 $output.require($Util, "ResourcesUtil")##
 

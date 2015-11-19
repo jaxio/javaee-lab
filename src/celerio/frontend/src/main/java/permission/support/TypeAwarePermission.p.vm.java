@@ -20,7 +20,7 @@ $output.require("java.io.Serializable")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.inject.Instance")##
 $output.require("javax.inject.Inject")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 
 /**
  * Permission service that should be used only in certain cases (e.g. from facelet tags). 

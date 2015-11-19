@@ -25,8 +25,8 @@ $output.require("javax.faces.validator.Validator")##
 $output.require("javax.faces.validator.ValidatorException")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.inject.Named")##
-$output.require($RepositorySupport, "JpaUniqueUtil")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.JpaUniqueUtil")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($Util, "ResourcesUtil")##
 
 @Named

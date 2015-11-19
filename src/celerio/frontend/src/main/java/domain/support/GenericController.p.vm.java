@@ -28,14 +28,14 @@ $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.inject.Inject")##
 $output.require("org.apache.commons.beanutils.PropertyUtils")##
 $output.require("org.apache.commons.lang.WordUtils")##
-$output.require($RepositorySupport, "JpaUniqueUtil")##
-$output.require($RepositorySupport, "SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.JpaUniqueUtil")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
 #if($project.hibernateSearchUsed)
-$output.require($RepositorySupport, "TermSelector")##
+$output.require("com.jaxio.jpa.querybyexample.TermSelector")##
 #end
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($PrinterSupport, "GenericPrinter")##
-$output.require($RepositorySupport, "GenericRepository")##
+$output.require("com.jaxio.jpa.querybyexample.GenericRepository")##
 $output.require($WebUtil, "MessageUtil")##
 $output.require($WebConversation, "ConversationCallBack")##
 $output.require($WebConversation, "ConversationContext")##
@@ -157,7 +157,7 @@ public abstract class ${output.currentClass}<E extends Identifiable<PK>, PK exte
         E template = repository.getNew();
         for (String property : completeProperties()) {
 #if($project.hibernateSearchUsed)
-$output.require($RepositorySupport, "MetamodelUtil")##
+$output.require("com.jaxio.jpa.querybyexample.MetamodelUtil")##
             if (repository.isIndexed(property)) {
                     searchParameters.addTerm(new TermSelector(metamodelUtil.toAttribute(property, repository.getType())).selected(value));
             } else {
@@ -209,7 +209,7 @@ $output.require($RepositorySupport, "MetamodelUtil")##
         }
     }
 #if($project.hibernateSearchUsed)
-$output.require($RepositorySupport, "MetamodelUtil")##
+$output.require("com.jaxio.jpa.querybyexample.MetamodelUtil")##
 
     protected List<String> completePropertyUsingFullText(String term, String property, Integer maxResults) {
         try {

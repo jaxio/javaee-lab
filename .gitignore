@@ -7,6 +7,7 @@ src/main/webapp
 src/main/resources
 src/main/config/celerio-maven-plugin/metadata.xml
 src/main/config/glassfish
+target/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

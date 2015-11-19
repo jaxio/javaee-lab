@@ -43,7 +43,7 @@ public class $output.currentClass extends GenericController<$entity.model.type, 
         init($entity.repository.var, $entity.webPermission.var, $entity.printer.var, ${entity.model.type.toUpperCase()}_SELECT_URI, ${entity.model.type.toUpperCase()}_EDIT_URI);
     }    
 #if($entity.defaultSortAttributes.flatUp.isNotEmpty())
-$output.require($RepositorySupport, "SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
 $output.requireMetamodel($entity.model)##
 
     @Override

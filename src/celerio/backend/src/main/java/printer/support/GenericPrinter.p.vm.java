@@ -20,7 +20,7 @@ $output.require("java.util.List")##
 $output.require("java.util.Locale")##
 $output.require("javax.persistence.metamodel.Attribute")##
 $output.require($Context, "LocaleHolder")##
-$output.require($RepositorySupport, "JpaUtil")##
+$output.require("com.jaxio.jpa.querybyexample.JpaUtil")##
 
 public abstract class ${output.currentClass}<T> {
     private Class<T> clazz;

@@ -3,8 +3,8 @@
     <configuration>
         <packs>
             <pack name="pack-javaee-jpa" path="src/celerio/backend" enable="true"/>
-            <pack name="pack-javaee-jsf" path="src/celerio/frontend" enable="true"/>
-            <pack name="pack-javaee-glassfish" path="src/celerio/glassfish" enable="true"/>
+            <pack name="pack-javaee-jsf" path="src/celerio/frontend" enable="false"/>
+            <pack name="pack-javaee-glassfish" path="src/celerio/glassfish" enable="false"/>
         </packs>
     </configuration>
 </celerio>

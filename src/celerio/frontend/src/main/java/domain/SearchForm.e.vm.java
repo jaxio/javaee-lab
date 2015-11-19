@@ -15,7 +15,7 @@
 $output.java($entity.searchForm)##
 
 $output.require($entity.model)##
-$output.require($RepositorySupport, "SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
 $output.require($WebModelSupport, "GenericSearchForm")##
 $output.require($entity.root.primaryKey)##
 
@@ -35,7 +35,7 @@ public class $output.currentClass extends GenericSearchForm<$entity.model.type, 
 #end    
 $output.requireMetamodel($attribute.entity.model)##
 $output.require($attribute.entity.model)##
-$output.require($RepositorySupport, "TermSelector")##
+$output.require("com.jaxio.jpa.querybyexample.TermSelector")##
 $output.require($attribute)##
     protected TermSelector ${attribute.var}TermSelector = new TermSelector(${attribute.entity.model.type}_.$attribute.var);
 #end
@@ -46,8 +46,8 @@ $output.require($attribute)##
 ## RANGEABLE 
 #foreach ($attribute in $entity.rangeableSearchAttributes.uniqueFlatUp.list)
 $output.requireMetamodel($attribute.entity.model)##
-$output.requireStatic($RepositorySupport, "Range.newRange")##
-$output.require($RepositorySupport, "Range")##
+$output.requireStatic("com.jaxio.jpa.querybyexample.Range.newRange")##
+$output.require("com.jaxio.jpa.querybyexample.Range")##
 $output.require($attribute.entity.model)##
 $output.require($attribute.fullType)##
     protected Range<$attribute.entity.model.type, ${attribute.type}> ${attribute.var}Range = newRange(${attribute.entity.model.type}_.$attribute.var);
@@ -55,17 +55,17 @@ $output.require($attribute.fullType)##
 ## MULTI SELECTABLE
 #foreach ($attribute in $entity.multiSelectableSearchAttributes.uniqueFlatUp.list)
 $output.requireMetamodel($attribute.entity.model)##
-$output.requireStatic($RepositorySupport, "PropertySelector.newPropertySelector")##
+$output.requireStatic("com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector")##
 $output.require($attribute.entity.model)##
-$output.require($RepositorySupport, "PropertySelector")##
+$output.require("com.jaxio.jpa.querybyexample.PropertySelector")##
 $output.require($attribute)##
     protected PropertySelector<$attribute.entity.model.type, ${attribute.type}> ${attribute.var}Selector = newPropertySelector(${attribute.entity.model.type}_.$attribute.var);
 #end
 ## X TO ONE
 #foreach ($relation in $entity.xToOne.flatUp.list)
 $output.require($relation.to)##
-$output.requireStatic($RepositorySupport, "PropertySelector.newPropertySelector")##
-$output.require($RepositorySupport, "PropertySelector")##
+$output.requireStatic("com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector")##
+$output.require("com.jaxio.jpa.querybyexample.PropertySelector")##
 $output.require($relation.fromEntity.model)##
 $output.requireMetamodel($relation.fromEntity.model)##
 #if($relation.isIntermediate() || !$relation.fromAttribute.isInCpk() || $relation.isComposite())
@@ -80,8 +80,8 @@ $output.requireMetamodel($relation.fromEntity.root.primaryKey)##
 #foreach ($relation in $entity.manyToMany.flatUp.list)
 $output.requireMetamodel($relation.fromEntity.root.primaryKey)##
 $output.requireMetamodel($relation.fromEntity.model)##
-$output.requireStatic($RepositorySupport, "PropertySelector.newPropertySelector")##
-$output.require($RepositorySupport, "PropertySelector")##
+$output.requireStatic("com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector")##
+$output.require("com.jaxio.jpa.querybyexample.PropertySelector")##
 $output.require($relation.from.fullType)##
 $output.require($relation.to.fullType)##
     protected PropertySelector<$relation.from.type, $relation.to.type> ${relation.to.vars}Selector = newPropertySelector(false, ${relation.from.type}_.${relation.to.vars});

@@ -21,12 +21,12 @@ $output.require("java.util.Set")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.persistence.OptimisticLockException")##
 $output.require("org.apache.commons.lang.WordUtils")##
-$output.require($RepositorySupport, "JpaUniqueUtil")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.JpaUniqueUtil")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
-$output.require($RepositorySupport, "EntityGraphLoader")##
-$output.require($RepositorySupport, "GenericRepository")##
-$output.require($RepositorySupport, "RepositoryLocator")##
+$output.require("com.jaxio.jpa.querybyexample.EntityGraphLoader")##
+$output.require("com.jaxio.jpa.querybyexample.GenericRepository")##
+$output.require("com.jaxio.jpa.querybyexample.RepositoryLocator")##
 $output.require($Util, "ResourcesUtil")##
 $output.require($WebUtil, "MessageUtil")##
 $output.require($WebUtil, "TabBean")##

@@ -15,7 +15,7 @@
 $output.java($WebPermissionSupport, "GenericPermission")##
 
 $output.require("java.io.Serializable")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 
 public abstract class ${output.currentClass}<E extends Identifiable<? extends Serializable>> {
     private Class<E> clazz;

@@ -15,9 +15,9 @@
 $output.skipIf($project.search.isEmpty())##
 $output.java($Search, "SearchMappingFactory")##
 
-$output.require("org.apache.solr.analysis.ASCIIFoldingFilterFactory")##
-$output.require("org.apache.solr.analysis.LowerCaseFilterFactory")##
-$output.require("org.apache.solr.analysis.NGramTokenizerFactory")##
+$output.require("org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilterFactory")##
+$output.require("org.apache.lucene.analysis.core.LowerCaseFilterFactory")##
+$output.require("org.apache.lucene.analysis.ngram.NGramTokenizerFactory")##
 $output.require("org.hibernate.search.annotations.Factory")##
 $output.require("org.hibernate.search.cfg.SearchMapping")##
 

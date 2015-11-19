@@ -24,7 +24,7 @@ $output.require($project.savedSearch.repository)##
 $output.require($project.accountEntity.model)##
 $output.require($project.accountEntity.repository)##
 $output.require($Context, "UserContext")##
-$output.require($RepositorySupport, "SearchParameters")##
+$output.require("com.jaxio.jpa.querybyexample.SearchParameters")##
 $output.require($WebModelSupport, "GenericSearchForm")##
 $output.require($WebUtil, "MessageUtil")##
 

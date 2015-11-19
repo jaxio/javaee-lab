@@ -16,6 +16,7 @@ $output.java($ModelSupport, "IdentifiableHashBuilder")##
 
 $output.require("java.io.Serializable")##
 $output.require("java.util.logging.Logger")
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 
 /**
  * The first time the {@link ${pound}hash(Logger, Identifiable)} is called, we check if the primary key is present or not.

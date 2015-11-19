@@ -15,7 +15,7 @@
 $output.java($WebConversation, "ConversationBean")##
 ## keep the filename as Conversation => easier for synch between packs
 $output.requireStatic("com.google.common.collect.Sets.newHashSet")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require("java.io.Serializable")##
 $output.require("java.util.logging.Logger")
 $output.require("java.util.Set")##

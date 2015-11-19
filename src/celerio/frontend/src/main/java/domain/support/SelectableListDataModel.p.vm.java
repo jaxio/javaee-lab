@@ -18,7 +18,7 @@ $output.require("java.io.Serializable")##
 $output.require("java.util.List")##
 $output.require("javax.faces.model.ListDataModel")##
 $output.require("org.primefaces.model.SelectableDataModel")##
-$output.require($ModelSupport, "Identifiable")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 
 public class ${output.currentClass}<E extends Identifiable<?>> extends ListDataModel<E> implements SelectableDataModel<E>, Serializable {
     private static final long serialVersionUID = 1L;
