@@ -24,6 +24,8 @@ $output.require($project.accountEntity.root.primaryKey)##
 $output.require("java.io.Serializable")##
 #set ($idType="Serializable")##
 #end
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
+
 
 /**
  * Get Spring security context to access user data security infos
@@ -79,5 +81,4 @@ public class $output.currentClass {
     public static boolean hasRole(String roleName) {
         return SecurityUtils.getSubject().hasRole(roleName);
     }
-
 }
