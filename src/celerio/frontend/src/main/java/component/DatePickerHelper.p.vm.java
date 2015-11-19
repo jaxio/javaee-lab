@@ -25,7 +25,7 @@ $output.require("java.util.List")##
 $output.require("javax.faces.component.UIInput")##
 $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.faces.model.SelectItem")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 /**
  * Helper used from the {@link DatePicker} composite component.

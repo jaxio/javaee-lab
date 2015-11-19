@@ -21,7 +21,7 @@ $output.require("javax.faces.convert.Converter")##
 $output.require("javax.faces.convert.FacesConverter")##
 $output.require("java.time.LocalDate")##
 $output.require("java.time.format.DateTimeFormatter")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 /**
  * JSF converter for JodaTime {@link LocalDate}.

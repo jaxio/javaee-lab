@@ -19,7 +19,7 @@ $output.requireStatic("org.apache.commons.lang.StringUtils.isNotBlank")##
 $output.require("java.util.List")##
 $output.require("java.util.Locale")##
 $output.require("javax.persistence.metamodel.Attribute")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 $output.require("com.jaxio.jpa.querybyexample.JpaUtil")##
 
 public abstract class ${output.currentClass}<T> {

@@ -25,7 +25,7 @@ $output.require("javax.inject.Inject")##
 $output.require("javax.inject.Named")##
 $output.require("javax.servlet.http.HttpServletRequest")##
 $output.require("javax.servlet.http.HttpServletResponse")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 $output.require($WebConversation, "ConversationBean")##
 $output.require($WebFilter, "LocaleResolver")##
 

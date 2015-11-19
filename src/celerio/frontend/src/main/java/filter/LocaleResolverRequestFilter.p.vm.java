@@ -30,7 +30,7 @@ $output.require("javax.servlet.http.HttpServletResponse")##
 $output.require("org.apache.commons.logging.Log")##
 $output.require("org.apache.commons.logging.LogFactory")##
 
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 @Named
 @ApplicationScoped

@@ -20,7 +20,7 @@ $output.require("java.util.Locale")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.inject.Instance")##
 $output.require("javax.inject.Inject")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 /**
  * Given the type of the object use the corresponding {@link GenericPrinter}, or use {@link ${pound}toString()} method.

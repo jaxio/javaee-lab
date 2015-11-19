@@ -17,7 +17,7 @@ $output.java($Util, "ResourcesUtil")##
 $output.require("javax.enterprise.context.ApplicationScoped")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.inject.Named")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 $output.require($Util, "Startup")##
 
 /**

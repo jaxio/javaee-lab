@@ -18,7 +18,7 @@ $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.faces.event.PhaseEvent")##
 $output.require("javax.faces.event.PhaseId")##
 $output.require("org.omnifaces.eventlistener.DefaultPhaseListener")##
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 $output.require($WebFilter, "LocaleResolverRequestFilter")##
 
 /**

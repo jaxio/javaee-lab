@@ -35,7 +35,6 @@ public class $output.currentClass {
      * currently exists in your account repository; it could be a spring security
      * 'anonymous user'.
      * 
-     * @see org.springframework.security.web.authentication.AnonymousAuthenticationFilter
      * @return the current user's username, or 'anonymousUser'.
      */
     public static String getUsername() {

@@ -664,7 +664,7 @@ $output.require($ModelSupport, "IdentifiableHashBuilder")##
     // -----------------------
     // Localization shortcuts
     // -----------------------
-$output.require($Context, "LocaleHolder")##
+$output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 #end
 
     /**
