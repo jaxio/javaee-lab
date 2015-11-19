@@ -1,0 +1,10 @@
+<celerio xmlns="http://www.jaxio.com/schema/celerio" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.jaxio.com/schema/celerio ./celerio.xsd">
+    <configuration>
+        <packs>
+            <pack name="pack-javaee-jpa" path="src/celerio/backend" enable="true"/>
+            <pack name="pack-javaee-jsf" path="src/celerio/frontend" enable="true"/>
+            <pack name="pack-javaee-glassfish" path="src/celerio/glassfish" enable="true"/>
+        </packs>
+    </configuration>
+</celerio>

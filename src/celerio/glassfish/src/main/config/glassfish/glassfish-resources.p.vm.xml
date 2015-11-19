@@ -1,0 +1,13 @@
+$output.file("src/main/config/glassfish/glassfish-resources.xml")##
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool name="embeddedConnPool" driver-classname="@jdbc.driver@" res-type="java.sql.Driver">
+        <property name="URL" value="@jdbc.url@" />
+        <property name="User" value="@jdbc.user@" />
+        <property name="Password" value="@jdbc.password@" />
+        <property name="USER" value="@jdbc.user@" />
+        <property name="PASSWORD" value="@jdbc.password@" />		
+    </jdbc-connection-pool>
+
+    <jdbc-resource jndi-name="app/jdbc/${configuration.applicationName}DS" pool-name="embeddedConnPool" />
+</resources>

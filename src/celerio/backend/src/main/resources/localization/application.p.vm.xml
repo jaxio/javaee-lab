@@ -1,0 +1,5 @@
+$output.localization("application.xml")##
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Add your application specific properties in this file.</comment>
+</properties>

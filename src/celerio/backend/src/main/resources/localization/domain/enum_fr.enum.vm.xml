@@ -1,0 +1,8 @@
+$output.domainLocalization("${enum.model.type}_fr.xml")##
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>French resources for the enum ${enum.model.type}</comment>
+#foreach ($enumValue in $enum.config.enumValues)
+	<entry key="${enum.model.type}_${enumValue.name}">${enum.getLabelsByEnumValue($enumValue).getLabel("fr")}</entry>
+#end
+</properties>

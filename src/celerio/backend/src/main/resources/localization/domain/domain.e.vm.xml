@@ -1,0 +1,51 @@
+$output.domainLocalization("${entity.model.type}.xml")##
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Domain resources for ${entity.model.varUp}</comment>
+
+	<entry key="${entity.labelName}">$entity.labels.label</entry>
+## We use mode.type to so dev can use repository.getTarget().getSimpleName() to construct the key.
+	<entry key="${entity.labelName}_search">Search $entity.labels.label</entry>
+	<entry key="${entity.labelName}_create">Create $entity.labels.label</entry>
+	<entry key="${entity.labelName}_edit">Edit {0}</entry>
+	<entry key="${entity.labelName}_view">View {0}</entry>
+
+	<!-- attributes -->
+#foreach ($attribute in $entity.allAttributes.list)
+	<entry key="${attribute.labelName}">$attribute.labels.label</entry>
+#end
+#foreach ($relation in $entity.xToOne.list)
+#if ($velocityCount == 1)
+
+	<!-- x-to-one -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.label</entry>
+#end
+#foreach ($relation in $entity.oneToMany.list)
+#if ($velocityCount == 1)
+
+	<!-- $relation.kind -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.label</entry>
+#end
+#foreach ($relation in $entity.manyToMany.list)
+#if ($velocityCount == 1)
+
+	<!-- $relation.kind -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.label</entry>
+#end
+#if($entity.uniques.isNotEmpty())
+
+	<!-- uniques -->
+#end
+#foreach ($unique in $entity.simpleUniques.list)
+	<entry key="${unique.attribute.labelName}_already_exists">${unique.attribute.labels.label} already exists</entry>
+#end
+#foreach ($compositeUnique in $entity.compositeUniques.list)
+#if("$compositeUnique.name" != "")
+	<entry key="${entity.model.var}_${compositeUnique.name.toLowerCase()}">$entity.labels.label ${compositeUnique.name.toLowerCase()} constraint violation</entry>
+#end
+#end
+	<entry key="${entity.model.var}_composite_unique_constraint_error">A composite unique constraint has failed on $entity.labels.label</entry>
+</properties>

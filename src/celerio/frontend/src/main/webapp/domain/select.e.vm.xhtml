@@ -1,0 +1,186 @@
+$output.webapp("$entity.model.subPackagePath", "${entity.model.var}Select.xhtml")##
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+## =====================================================
+## MACROS
+## =====================================================
+## --
+#macro(xToOneSelect $relation)
+			<app:multiAutoComplete id="${relation.to.var}Selector" value="#{${entity.searchForm.var}.${relation.to.var}Selector}" label="${relation.labelName}" 
+				controller="#{${relation.toEntity.controller.var}}" permission="#{${relation.toEntity.webPermission.var}}"/>
+#end
+## --
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://springfuse.jaxio.com/app"
+	xmlns:appcc="http://java.sun.com/jsf/composite/components">
+	<app:search title="${entity.labelName}_search" model="#{$entity.lazyDataModel.var}" searchForm="#{${entity.searchForm.var}}"
+		controller="#{${entity.controller.var}}" permission="#{${entity.webPermission.var}}"#{if}($project.isSavedSearchPresent()) savedSearch="true"#{end}#{if}($entity.isIndexed()) fullText="true"#{end}>
+#if($entity.hibernateSearchAttributes.flatUp.size > 0)
+		<ui:define name="fullTextFilters">
+#if ($entity.hibernateSearchAttributes.uniqueFlatUp.size > 1)
+            <app:inputMultiAutoComplete id="fullTextQuery" value="#{${entity.searchForm.var}.termsOnAll}" label="search_full_text_all" completeMethod="completeSame" />
+#end
+#foreach ($attribute in $entity.hibernateSearchAttributes.uniqueFlatUp.list)
+			<app:inputMultiAutoComplete id="${attribute.var}Term" value="#{${entity.searchForm.var}.${attribute.var}TermSelector}" label="${attribute.labelName}" completeMethod="completeSame" />
+#end
+		</ui:define>
+#end
+		<ui:define name="filters">
+#foreach ($attribute in $entity.searchAttributes.flatUp.list)
+#if ($attribute.isBlob())
+##			nothing for blobs
+#elseif($attribute.isSimpleFk())
+#xToOneSelect($attribute.getXToOneRelation())
+#elseif($attribute.isInCpk() && !$attribute.isInFk())
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${identifiableProperty.var}.${attribute.var}}" label="${attribute.labelName}"/>
+#elseif ($attribute.isEnum())
+#if ($attribute.enumConfig.enumValues.size() > 5)
+			<app:inputMultiEnumAutoComplete id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Selector}" items="#{${attribute.enumType.items.var}}" controller="#{${attribute.enumType.controller.var}}" #if($attribute.isNullable()) nullAllowed="true"#end label="${attribute.labelName}" />
+#else
+			<app:selectManyEnum id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Selector}" items="#{${attribute.enumType.items.var}}" #if($attribute.isNullable()) nullAllowed="true"#end label="${attribute.labelName}" />
+#end
+#elseif($attribute.isBoolean())
+			<app:selectManyBoolean id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Selector}"#if($attribute.isNullable()) nullAllowed="true"#end label="${attribute.labelName}" />
+#elseif ($attribute.isInteger())
+#if($attribute.isRangeable())
+			<app:rangeInt id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}"/>
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}"/>
+#end
+#elseif ($attribute.isLong())
+#if($attribute.isRangeable())
+			<app:rangeLong id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}"/>
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#elseif ($attribute.isFloat())
+#if($attribute.isRangeable())
+			<app:rangeFloat id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#elseif ($attribute.isDouble())
+#if($attribute.isRangeable())
+			<app:rangeDouble id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#elseif ($attribute.isBigInteger())
+#if($attribute.isRangeable())
+			<app:rangeBigInt id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#elseif ($attribute.isBigDecimal())
+#if($attribute.isRangeable())
+			<app:rangeBigDec id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#elseif ($attribute.isDate() && !$attribute.isVersion())
+#if($attribute.isJavaUtilOnlyDate())
+#if($attribute.isRangeable())
+			<app:rangeDate id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:inputDate id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#end
+#elseif($attribute.isJavaUtilDateAndTime())
+#if($attribute.isRangeable())
+			<app:rangeDateTime id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:inputDateTime id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#end
+#elseif($attribute.isLocalDate())
+#if($attribute.isRangeable())
+			<app:rangeLocalDate id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:inputLocalDate id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#end
+#elseif($attribute.isLocalDateTime())
+#if($attribute.isRangeable())
+			<app:rangeLocalDateTime id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#else
+			<app:inputLocalDateTime id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Range}" label="${attribute.labelName}" />
+#end
+#else
+			<h:outputText value="date type not supported!"/>
+			<h:outputText value="fix it manually and send us your solution!"/>
+#end
+#else
+#if($attribute.isPassword())
+			<app:inputMultiAutoComplete id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Selector}" label="${attribute.labelName}" completeMethod="completeSame" />
+#elseif(!$attribute.isInCpk())
+			<app:inputMultiAutoComplete id="${attribute.var}" value="#{${entity.searchForm.var}.${attribute.var}Selector}" label="${attribute.labelName}" completeMethod="completeProperty" property="${attribute.var}" />
+#else
+			<app:input id="${attribute.var}" value="#{${entity.searchForm.var}.${entity.model.var}.${attribute.var}}" label="${attribute.labelName}" />
+#end
+#end
+#end
+## =====================================================
+## COMPOSITE X TO ONE
+## =====================================================
+#foreach ($relation in $entity.compositeXToOne.flatUp.list)
+#xToOneSelect($relation)
+#end
+## =====================================================
+## MANY TO MANY
+## =====================================================
+#foreach ($relation in $entity.manyToMany.flatUp.list)
+			<app:multiAutoComplete id="${relation.to.vars}Selector" value="#{${entity.searchForm.var}.${relation.to.vars}Selector}" label="${relation.labelName}" 
+				controller="#{${relation.toEntity.controller.var}}" permission="#{${relation.toEntity.webPermission.var}}"/>
+#end
+		</ui:define>
+		<ui:define name="result">
+			<c:if test="#{not multiCheckboxSelection}">
+				<p:ajax event="rowSelect" listener="#{${entity.lazyDataModel.var}.onRowSelect}" />
+			</c:if>
+#foreach ($attribute in $entity.searchResultAttributes.flatUp.list)
+#if ($attribute.hasXToOneRelation())
+			<p:column id="${attribute.xToOneRelation.labelName}" headerText="#{msg.${attribute.xToOneRelation.labelName}}"#if($attribute.xToOneRelation.toEntity.xToOneSortAttribute.isSortable()) sortBy="#{item.${attribute.xToOneRelation.to.var}.${attribute.xToOneRelation.toEntity.xToOneSortAttribute.var}}"#end styleClass="${attribute.xToOneRelation.to.var}">
+				<h:outputText value="#{printer.print(item.${attribute.xToOneRelation.to.var})}" />
+			</p:column>
+#else
+			<p:column id="${attribute.labelName}" headerText="#{msg.${attribute.labelName}}"#if($attribute.isSortable()) sortBy="#{item.${attribute.var}}"#end styleClass="${attribute.var}#if($attribute.isNumeric()) numeric#{end}">
+#if($attribute.isInCpk() && !$attribute.isInFk())
+				<h:outputText value="#{item.${identifiableProperty.var}.${attribute.var}}" />
+#elseif ($attribute.isNumeric())
+#if($attribute.isIntegralNumber())
+				<app:outputInteger value="#{item.${attribute.var}}" />
+#else
+				<app:outputDecimal value="#{item.${attribute.var}}" />
+#end
+#elseif ($attribute.isJavaUtilOnlyDate())
+				<app:outputDate value="#{item.${attribute.var}}" />
+#elseif ($attribute.isJavaUtilOnlyTime())
+				<app:outputTime value="#{item.${attribute.var}}" />
+#elseif ($attribute.isJavaUtilDateAndTime())
+				<app:outputDateTime value="#{item.${attribute.var}}" />
+#elseif ($attribute.isLocalDate())
+				<app:outputLocalDate value="#{item.${attribute.var}}" />
+#elseif ($attribute.isLocalDateTime())
+				<app:outputLocalDateTime value="#{item.${attribute.var}}" />
+#elseif ($attribute.isEnum())
+				<h:outputText value="#{item.${attribute.var}.label}"/>
+#elseif($attribute.isBoolean())
+				<appcc:outputBoolean value="#{item.${attribute.var}}" />
+#elseif($attribute.isFilename())
+				<app:outputFile filename="#{item.${attribute.filename.var}}" stream="#{${entity.fileDownload.var}.get${attribute.file.varUp}Stream(item)}"/>
+#else
+				<h:outputText value="#{item.${attribute.var}}" />
+#end
+			</p:column>
+#end
+#end
+			<p:column id="actions" headerText="#{msg.actions}" styleClass="actions-column" resizable="false">
+				<app:iconSelect item="#{item}" />
+				<app:iconEdit item="#{item}" />
+				<app:iconView item="#{item}" />
+				<app:iconDelete item="#{item}" />
+			</p:column>
+		</ui:define>
+	</app:search>
+</ui:composition>

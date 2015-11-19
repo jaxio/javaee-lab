@@ -1,0 +1,51 @@
+$output.domainLocalization("${entity.model.type}_fr.xml")##
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Domain resources for ${entity.model.varUp} for the french locale</comment>
+
+	<entry key="${entity.labelName}">$entity.labels.getLabel("fr")</entry>
+## We use mode.type to so dev can use repository.getTarget().getSimpleName() to construct the key.
+	<entry key="${entity.labelName}_search">Recherche de $entity.labels.getLabel("fr")</entry>
+	<entry key="${entity.labelName}_create">Création de $entity.labels.getLabel("fr")</entry>
+	<entry key="${entity.labelName}_edit">Édition de {0}</entry>
+	<entry key="${entity.labelName}_view">Affichage de {0}</entry>
+
+	<!-- attributes -->
+#foreach ($attribute in $entity.allAttributes.list)
+	<entry key="${attribute.labelName}">$attribute.labels.getLabel("fr")</entry>
+#end
+#foreach ($relation in $entity.xToOne.list)
+#if ($velocityCount == 1)
+
+	<!-- x-to-one -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.getLabel("fr")</entry>
+#end
+#foreach ($relation in $entity.oneToMany.list)
+#if ($velocityCount == 1)
+
+	<!-- $relation.kind -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.getLabel("fr")</entry>
+#end
+#foreach ($relation in $entity.manyToMany.list)
+#if ($velocityCount == 1)
+
+	<!-- $relation.kind -->
+#end
+	<entry key="${relation.labelName}">$relation.labels.getLabel("fr")</entry>
+#end
+#if($entity.uniques.isNotEmpty())
+
+	<!-- uniques -->
+#end
+#foreach ($unique in $entity.simpleUniques.list)
+	<entry key="${unique.attribute.labelName}_already_exists">${unique.attribute.labels.getLabel("fr")} existe déjà</entry>
+#end
+#foreach ($compositeUnique in $entity.compositeUniques.list)
+#if("$compositeUnique.name" != "")
+	<entry key="${entity.model.var}_${compositeUnique.name.toLowerCase()}">$entity.labels.getLabel("fr") violation de contrainte unique ${compositeUnique.name.toLowerCase()} </entry>
+#end
+#end
+	<entry key="${entity.model.var}_composite_unique_constraint_error">Une contrainte d'unicité multiple n'est pas respectée sur $entity.labels.getLabel("fr")</entry>
+</properties>
