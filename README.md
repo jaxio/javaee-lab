@@ -1,27 +1,24 @@
 
-# Work in progress
+# Celerio templates: full Java EE 7 app
 
-Celerio template for pure Java EE 7 application.
+This is a work in progress...
 
+To generate the source:
 
+  mvn -Pdb,metadata,gen generate-sources
 
-REQUIREMENTS:
-=============
-* JDK 7 
-
-On macosx you may run into trouble, in that case, check:
-
-* http://brianoneill.blogspot.fr/2012/11/installing-jdk-7-on-mac-os-x.html + set your JAVA_HOME env variable
-
-USAGE:
-======
-
-Simply run:
+To run:
 
   mvn -Pdb,metadata,gen package embedded-glassfish:run
 
 BEWARE, on macosx it create tmp files under /var/folders/mw/...
 
+
+
+
+
+
+Below are old notes (need to rework):
 
 DEPLOY ON A RUNNING GLASSFISH SERVER:
 =====================================
