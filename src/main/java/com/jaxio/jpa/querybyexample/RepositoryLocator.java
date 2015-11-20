@@ -15,11 +15,11 @@
  */
 package com.jaxio.jpa.querybyexample;
 
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Maps.newHashMap;
@@ -31,19 +31,19 @@ public class RepositoryLocator {
     private Map<Class<?>, GenericRepository<?, ?>> repositories = newHashMap();
 
     @Inject
-    void buildCache(List<GenericRepository<?, ?>> registredRepositories) {
+    void buildCache(Instance<GenericRepository<?, ?>> registredRepositories) {
         for (GenericRepository<?, ?> repository : registredRepositories) {
             repositories.put(repository.getType(), repository);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public <PK extends Serializable, E extends Identifiable<PK>> GenericRepository<E, PK> getRepository(Class<? extends E> clazz) {
-        return (GenericRepository<E, PK>) repositories.get(clazz);
+    public <PK extends Serializable> GenericRepository<Identifiable<PK>, PK> getRepository(Class<Identifiable<PK>> clazz) {
+        return (GenericRepository<Identifiable<PK>, PK>) repositories.get(clazz);
     }
 
     @SuppressWarnings("unchecked")
-    public <PK extends Serializable, E extends Identifiable<PK>> GenericRepository<E, PK> getRepository(E entity) {
-        return (GenericRepository<E, PK>) repositories.get(getClassWithoutInitializingProxy(entity));
+    public <PK extends Serializable> GenericRepository<Identifiable<PK>, PK> getRepository(Identifiable<PK> entity) {
+        return (GenericRepository<Identifiable<PK>, PK>) repositories.get(getClassWithoutInitializingProxy(entity));
     }
 }

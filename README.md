@@ -14,7 +14,17 @@ To run:
 BEWARE, on macosx it create tmp files under /var/folders/mw/...
 
 
+# Requirement: build your H2 Driver 
 
+H2 driver is not JDBC 4.1 compliant... so you need to build your own.
+To do so...
+    git clone git@github.com:h2database/h2database.git
+    cd h2database/h2
+    build switchSource
+    build jar
+    cp bin/h2-1.4.190.jar ~/.m2/repository/com/h2database/h2/1.4.190/.
+
+More info here: http://www.h2database.com/html/build.html#environment
 
 
 
