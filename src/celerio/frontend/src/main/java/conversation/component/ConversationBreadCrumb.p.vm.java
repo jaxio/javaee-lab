@@ -19,8 +19,8 @@ $output.requireStatic("org.apache.commons.lang.StringUtils.isNotBlank")##
 $output.require("java.io.Serializable")##
 $output.require("java.util.Iterator")##
 $output.require("java.util.Stack")##
-$output.require("org.primefaces.component.menuitem.UIMenuItem")##
-$output.require("org.primefaces.model.menu.DefaultMenuModel")##
+$output.require("org.primefaces.model.menu.DefaultMenuItem")##
+$output.require("org.primefaces.model.menu.DynamicMenuModel")##
 $output.require("org.primefaces.model.menu.MenuModel")##
 $output.require($WebConversation, "ConversationBean")##
 $output.require($WebConversation, "ConversationContext")##
@@ -39,13 +39,13 @@ $serialVersionUID
     }
 
     public MenuModel getModel() {
-        MenuModel model = new DefaultMenuModel();
+        MenuModel model = new DynamicMenuModel();
         Stack<ConversationContext<?>> ctxStack = getCurrentConversation().getConversationContextes();
         int beforeLastIndex = ctxStack.size() - 2;
         Iterator<ConversationContext<?>> iterator = ctxStack.iterator();
 
         // first item is rendered as ui-icon-home => we don't want it so we disable it.
-        UIMenuItem menuItem = new UIMenuItem();
+        DefaultMenuItem menuItem = new DefaultMenuItem();
         menuItem.setRendered(false);
         model.addElement(menuItem);
 
@@ -53,7 +53,7 @@ $serialVersionUID
         while (iterator.hasNext()) {
             ConversationContext<?> ctx = iterator.next();
             if (isNotBlank(ctx.getLabel())) {
-                menuItem = new UIMenuItem();
+                menuItem = new DefaultMenuItem();
                 menuItem.setValue(ctx.getLabel());
                 if (i == beforeLastIndex && beforeLastIndex > 0) {
                     // calls back button action which will trigger the callback 

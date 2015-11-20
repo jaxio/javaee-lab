@@ -65,6 +65,11 @@ a .ui-menuitem-text {
 	margin-right: 0em !important;
 }
 
+.ui-menubutton .ui-button {
+	margin-top: 1px !important;
+	margin-bottom: 1px !important;
+}
+
 /* action column in datatable */
 
 .actions-column {
@@ -364,6 +369,10 @@ div.ui-layout-center div.ui-layout-unit-content div.ui-toolbar button.ui-button:
 
 .ui-autocomplete-panel {
 	max-height: 200px;
+}
+
+.ui-autocomplete .ui-autocomplete-dropdown  {
+	position: inherit !important;
 }
 
 /* Autocomplete multiple*/

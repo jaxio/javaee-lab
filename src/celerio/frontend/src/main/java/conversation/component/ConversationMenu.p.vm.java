@@ -18,7 +18,7 @@ $output.require("java.io.Serializable")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.context.Conversation")##
 $output.require("javax.inject.Inject")##
-$output.require("org.primefaces.component.menuitem.UIMenuItem")##
+$output.require("org.primefaces.model.menu.DefaultMenuItem")##
 $output.require("org.primefaces.model.menu.DefaultMenuModel")##
 $output.require("org.primefaces.model.menu.MenuModel")##
 $output.require($WebConversation, "ConversationManager")##
@@ -41,7 +41,7 @@ $serialVersionUID
         ConversationBean conversation = conversationManager.getCurrentConversation();
 
         for (Map<String, String> navigationInfo : conversationManager.navigationInfoMaps().values()) {
-            UIMenuItem htmlMenuItem = new UIMenuItem();
+            DefaultMenuItem htmlMenuItem = new DefaultMenuItem();
             htmlMenuItem.setValue(navigationInfo.get("LABEL"));
             htmlMenuItem.setUrl(navigationInfo.get("URL"));
 

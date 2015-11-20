@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:app="http://springfuse.jaxio.com/app"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:app="http://jaxio.com/app"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/layouts/#{print ? 'print' : 'main'}.xhtml">
 	<ui:define name="toolbarChildren">
@@ -15,13 +15,13 @@
 				value="#{msg.back}" icon="ui-icon-arrowreturnthick-1-w" />
 		</p:toolbarGroup>
 		<p:toolbarGroup rendered="#{not sub and not readonly}">
-			<p:commandButton id="close" oncomplete="askForSaveDialog.show(); APP.focusAskForSaveDialog();"
+			<p:commandButton id="close" oncomplete="PF('askForSaveDialog').show(); APP.focusAskForSaveDialog();"
 				ajax="true" immediate="true" process="@this"
 				icon="ui-icon-close"
 				value="#{msg.menu_close}"
 				title="#{msg.menu_close} #{resourcesUtil.getProperty(title)}"/>
 			<p:commandButton id="delete" icon="ui-icon-trash"
-				onclick="askForDeleteDialog.show(); APP.focusAskForDeleteDialog();"
+				onclick="PF('askForDeleteDialog').show(); APP.focusAskForDeleteDialog();"
 				value="#{msg.menu_delete_and_close}"
 				title="#{msg.menu_delete_and_close} #{resourcesUtil.getProperty(title)}"
 				disabled="#{empty bean.entity.id}"
@@ -56,12 +56,12 @@
 				<h:outputText value="#{printer.print(bean.entity)}" style="font-weight:bold" />
 			</h:panelGrid>
 			<p:commandButton id="askForDeleteDialogYes" action="#{bean.deleteAndClose()}" ajax="false" immediate="true" process="@none" value="#{msg.yes}" title="#{msg.dialog_delete_confirm} #{msg.yes}" icon="ui-icon-check" />
-			<p:commandButton id="askForDeleteDialogNo" value="#{msg.no}" title="#{msg.dialog_delete_confirm} #{msg.no}" onclick="askForDeleteDialog.hide(); APP.focusTo('form:delete'); return false;" icon="ui-icon-cancel"/>
+			<p:commandButton id="askForDeleteDialogNo" value="#{msg.no}" title="#{msg.dialog_delete_confirm} #{msg.no}" onclick="PF('askForDeleteDialog').hide(); APP.focusTo('form:delete'); return false;" icon="ui-icon-cancel"/>
 		</p:confirmDialog>
 		<p:confirmDialog widgetVar="askForSaveDialog" header="#{msg.menu_save}?" message="#{msg.dialog_ask_for_save}">
 			<p:commandButton id="askForSaveDialogYes" action="#{bean.saveAndClose()}" ajax="true" process="@form" value="#{msg.yes}"
 				title="#{msg.dialog_ask_for_save} #{msg.yes}"
-				onstart="askForSaveDialog.hide()"
+				onstart="PF('askForSaveDialog').hide()"
 				styleClass="aria-save-button"
 				update="messages" icon="ui-icon-check" />
 			<p:commandButton id="askForSaveDialogNo" action="#{bean.forceClose()}" ajax="false"

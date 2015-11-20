@@ -10,13 +10,13 @@ $output.webapp("$entity.model.subPackagePath", "${entity.model.var}Select.xhtml"
 #end
 ## --
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:app="http://springfuse.jaxio.com/app"
-	xmlns:appcc="http://java.sun.com/jsf/composite/components">
+	xmlns:app="http://jaxio.com/app"
+	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
 	<app:search title="${entity.labelName}_search" model="#{$entity.lazyDataModel.var}" searchForm="#{${entity.searchForm.var}}"
 		controller="#{${entity.controller.var}}" permission="#{${entity.webPermission.var}}"#{if}($project.isSavedSearchPresent()) savedSearch="true"#{end}#{if}($entity.isIndexed()) fullText="true"#{end}>
 #if($entity.hibernateSearchAttributes.flatUp.size > 0)

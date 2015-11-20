@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:app="http://springfuse.jaxio.com/app">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:app="http://jaxio.com/app">
 	<app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{(empty rendered or rendered)}" />
 	<p:selectManyCheckbox id="#{id}" value="#{value.selected}" converter="#{booleanConverter}" rendered="#{(empty rendered or rendered) and not nullAllowed}">
 		<f:selectItem itemLabel="#{msg.boolean_true}" itemValue="#{true}" />

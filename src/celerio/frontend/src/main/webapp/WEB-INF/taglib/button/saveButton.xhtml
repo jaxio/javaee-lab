@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<!-- Display commandButton for 'saveAndClose' or 'ok' action depending on the context -->
 	<p:commandButton id="saveAndClose" action="#{bean.saveAndClose()}" ajax="true" update="messages delete" process="@form"

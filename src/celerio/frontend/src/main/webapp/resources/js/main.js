@@ -17,7 +17,7 @@ jQuery(function() {
 						  .blur(function() { jQuery(this).parent().removeClass('ui-state-focus');});
 
 	/* Set the default button when user press enter */
-	$("form input, form select").live("keypress", function (e) {
+	$("form input, form select").on("keypress", function (e) {
 		if ($(this).parents("form").find("button[type=submit].default").length <= 0) {
 			return true;
 		}
@@ -31,7 +31,7 @@ jQuery(function() {
 	});
 
 	/* keep focus inside askForDeleteDialog */
-	$(PrimeFaces.escapeClientId('form:askForDeleteDialogNo')).live('keydown', function(e) { 
+	$(PrimeFaces.escapeClientId('form:askForDeleteDialogNo')).on('keydown', function(e) { 
 		if ((!e.shiftKey) && ((e.which && e.which == 9) || (e.keyCode && e.keyCode == 9))) {
 			if (e.preventDefault) {
 				e.preventDefault();
@@ -39,7 +39,7 @@ jQuery(function() {
 			jQuery(PrimeFaces.escapeClientId('form:askForDeleteDialogYes')).focus();
 		}
 	});
-	$(PrimeFaces.escapeClientId('form:askForDeleteDialogYes')).live('keydown', function(e) { 
+	$(PrimeFaces.escapeClientId('form:askForDeleteDialogYes')).on('keydown', function(e) { 
 		if ((e.shiftKey) && ((e.which && e.which == 9) || (e.keyCode && e.keyCode == 9))) {
 			if (e.preventDefault) {
 				e.preventDefault();
@@ -49,7 +49,7 @@ jQuery(function() {
 	});
 
 	/* keep focus inside askForSaveDialog */
-	$(PrimeFaces.escapeClientId('form:askForSaveDialogNo')).live('keydown', function(e) { 
+	$(PrimeFaces.escapeClientId('form:askForSaveDialogNo')).on('keydown', function(e) { 
 		if ((!e.shiftKey) && ((e.which && e.which == 9) || (e.keyCode && e.keyCode == 9))) {
 			if (e.preventDefault) {
 				e.preventDefault();
@@ -57,7 +57,7 @@ jQuery(function() {
 			jQuery(PrimeFaces.escapeClientId('form:askForSaveDialogYes')).focus();
 		}
 	});
-	$(PrimeFaces.escapeClientId('form:askForSaveDialogYes')).live('keydown', function(e) { 
+	$(PrimeFaces.escapeClientId('form:askForSaveDialogYes')).on('keydown', function(e) { 
 		if ((e.shiftKey) && ((e.which && e.which == 9) || (e.keyCode && e.keyCode == 9))) {
 			if (e.preventDefault) {
 				e.preventDefault();
