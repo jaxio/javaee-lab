@@ -80,3 +80,7 @@ HELP:
 * Tip and tricks + examples:
   https://weblogs.java.net/blog/bhavanishankar/archive/2012/03/19/tips-tricks-and-troubleshooting-embedded-glassfish
 
+Other:
+======
+
+* http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/index.html#7

@@ -1,15 +1,15 @@
 $output.resource("META-INF", "persistence.xml")##
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-             version="2.1">
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+			 version="2.1">
 	<persistence-unit name="${configuration.applicationName}PU" transaction-type="JTA">
 		<description><![CDATA[
 			persistence unit used during development is declared in the file WEB-INF/glassfish-resources.xml
 		]]></description>
 		
 		<!-- begin hibernate -->
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- end hibernate -->
 		
 		<jta-data-source>app/jdbc/${configuration.applicationName}DS</jta-data-source>		
@@ -35,11 +35,12 @@ $output.resource("META-INF", "persistence.xml")##
 #end
 			<!-- end hibernate -->
 
-			<!-- begin eclipse link -->		
+			<!-- begin eclipse link
 			<property name="eclipselink.weaving" value="false" />
 			<property name="eclipselink.deploy-on-startup" value="true" />
 			<property name="eclipselink.logging.level" value="FINE" />
             <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/>
+            -->
 			<!-- end eclipse link -->		
 		</properties>
 	</persistence-unit>

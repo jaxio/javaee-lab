@@ -96,7 +96,7 @@
                     <labels>
                         <label value="Identifiant" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
                 <columnConfig columnName="password">
                     <labels>
@@ -104,7 +104,7 @@
                     </labels>
                 </columnConfig>
                 <columnConfig columnName="email" searchResult="true">
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
                 <columnConfig columnName="is_enabled" searchResult="true">
                     <labels>
@@ -120,13 +120,13 @@
                     <labels>
                         <label value="Prénom" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
                 <columnConfig columnName="last_name">
                     <labels>
                         <label value="Nom" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
             </columnConfigs>
         </entityConfig>
@@ -142,7 +142,7 @@
                     <labels>
                         <label value="Droit" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
             </columnConfigs>
         </entityConfig>
@@ -210,13 +210,13 @@
                     <labels>
                         <label value="Ville" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
                 <columnConfig columnName="country">
                     <labels>
                         <label value="Pays" lang="fr"/>
                     </labels>
-                    <indexedField/>
+                    <!--<indexedField/>-->
                 </columnConfig>
             </columnConfigs>
         </entityConfig>

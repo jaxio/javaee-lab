@@ -45,10 +45,10 @@
         <jdbc.url>jdbc:h2:~/.h2/${database.name};MVCC=TRUE;FILE_LOCK=NO</jdbc.url>
         <jdbc.user>${database.user}</jdbc.user>
         <jdbc.password>${database.password}</jdbc.password>
+        <jdbc.schema></jdbc.schema>
         <jdbc.catalog></jdbc.catalog>
         <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
         <sql-maven-plugin.delimiter>;</sql-maven-plugin.delimiter>
-
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Version dependencies when used in multiple dependencies -->
@@ -76,8 +76,8 @@
         <hibernate.generate_statistics>true</hibernate.generate_statistics>
         <hibernate.use_sql_comments>true</hibernate.use_sql_comments>
         <hibernate.ehcache.configuration.file>ehcache.xml</hibernate.ehcache.configuration.file>
-        <hibernate.use.second.level.cache>true</hibernate.use.second.level.cache>
-        <hibernate.use.query.cache>true</hibernate.use.query.cache>
+        <hibernate.use.second.level.cache>false</hibernate.use.second.level.cache>
+        <hibernate.use.query.cache>false</hibernate.use.query.cache>
 
         <weld.version>2.3.1.Final</weld.version>
 
@@ -110,7 +110,7 @@
             <groupId>${jdbc.groupId}</groupId>
             <artifactId>${jdbc.artifactId}</artifactId>
             <version>${jdbc.version}</version>
-            <scope>runtime</scope>
+            <!--<scope>runtime</scope>-->
         </dependency>
 
         <dependency>
@@ -207,7 +207,7 @@
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-core</artifactId>
-            <version>5.3.1</version>
+            <version>5.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tika</groupId>
@@ -456,9 +456,7 @@
                         </goals>
                         <configuration>
                             <commands>
-                                <param>add-resources
-                                    ${project.build.directory}/${project.artifactId}/WEB-INF/glassfish-resources.xml
-                                </param>
+                                <param>add-resources ${project.build.directory}/${project.artifactId}/WEB-INF/glassfish-resources.xml</param>
                             </commands>
                         </configuration>
                     </execution>

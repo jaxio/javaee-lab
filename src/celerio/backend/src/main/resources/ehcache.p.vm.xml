@@ -34,19 +34,19 @@ $output.resource("ehcache.xml")##
 
 	-->
 	<defaultCache maxElementsInMemory="2000" eternal="false"
-		timeToIdleSeconds="6000" timeToLiveSeconds="6000"
-		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
+				  timeToIdleSeconds="6000" timeToLiveSeconds="6000"
+				  overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
 	</defaultCache>
 
 	<cache name="org.hibernate.cache.internal.StandardQueryCache"
-		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="86400"
-		timeToLiveSeconds="86400" overflowToDisk="false"
-		memoryStoreEvictionPolicy="LFU">
+		   maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="86400"
+		   timeToLiveSeconds="86400" overflowToDisk="false"
+		   memoryStoreEvictionPolicy="LFU">
 	</cache>
 
 	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
-		maxElementsInMemory="400000" eternal="true" overflowToDisk="false"
-		memoryStoreEvictionPolicy="LFU">
+		   maxElementsInMemory="400000" eternal="true" overflowToDisk="false"
+		   memoryStoreEvictionPolicy="LFU">
 	</cache>
 
 	<!--
