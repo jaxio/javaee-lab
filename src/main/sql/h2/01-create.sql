@@ -8,7 +8,7 @@ CREATE TABLE USER (
     password                 varchar(100) not null,
     email                    varchar(100),
     is_enabled               bool not null default true,
-    civility                 char(2) default 'MR',
+    civility                 char(2), -- BUG default 'MR',
     first_name               varchar(100),
     last_name                varchar(100),
     creation_date            timestamp,

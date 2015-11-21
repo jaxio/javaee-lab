@@ -14,11 +14,11 @@
 ##
 $output.java($Util, "ResourcesUtil")##
 
+$output.require("javax.ejb.Startup")##
 $output.require("javax.enterprise.context.ApplicationScoped")##
 $output.require("javax.inject.Inject")##
 $output.require("javax.inject.Named")##
 $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
-$output.require($Util, "Startup")##
 
 /**
  * ResourcesUtil allows you to retrieve localized resources for the locale present in the current thread of execution.

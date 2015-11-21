@@ -30,7 +30,7 @@ $output.require($Util, "ResourcesUtil")##
  * Convenient bean to create JSF info/warn/error messages.
  * Business exceptions can be mapped to user friendly messages inside the {@link ${pound}error(Throwable)} method. 
  */
-$output.dynamicAnnotationTakeOver("javax.enterprise.context.ApplicationScoped","javax.inject.Named","${Util.packageName}.Startup")##
+$output.dynamicAnnotationTakeOver("javax.enterprise.context.ApplicationScoped","javax.inject.Named","javax.ejb.Startup")##
 public class $output.currentClass {
     private static ${output.currentClass} instance;
     

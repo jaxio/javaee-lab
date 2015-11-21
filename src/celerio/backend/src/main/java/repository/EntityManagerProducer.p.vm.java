@@ -14,6 +14,7 @@
 ##
 $output.java($RepositorySupport, "EntityManagerProducer")##
 
+$output.require("javax.ejb.Startup")##
 $output.require("javax.enterprise.context.ApplicationScoped")##
 $output.require("javax.enterprise.context.RequestScoped")##
 $output.require("javax.enterprise.inject.Default")##
@@ -21,7 +22,6 @@ $output.require("javax.enterprise.inject.Produces")##
 $output.require("javax.inject.Named")##
 $output.require("javax.persistence.EntityManager")##
 $output.require("javax.persistence.PersistenceContext")##
-$output.require($Util, "Startup")##
 
 /**
  * Annotated with {@link Startup} to force initialization of entity meta-models at startup before use of meta-models by other beans.

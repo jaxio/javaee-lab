@@ -41,6 +41,12 @@ public class $output.currentClass extends ResourceBundle {
         if (resourcesUtil == null) {
             resourcesUtil = ResourcesUtil.getInstance();
         }
+
+        if (resourcesUtil == null) {
+            System.out.println("===> TODO key=" + key + " requested on startup, why ? => returns null");
+            return null;
+        }
+
         return resourcesUtil.getProperty(key);
     }
 }

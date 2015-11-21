@@ -17,6 +17,7 @@ $output.java($WebValidation, "LenientBeanValidator")##
 $output.require("javax.faces.component.UIComponent")##
 $output.require("javax.faces.context.FacesContext")##
 $output.require("javax.faces.validator.BeanValidator")##
+$output.require("javax.faces.validator.FacesValidator")##
 
 /**
  * Disables validation for certain actions in order to let the user navigate to sub view
@@ -24,7 +25,7 @@ $output.require("javax.faces.validator.BeanValidator")##
  *
  * _HACK_ This setting is tricky. It circumvents a JSF limitation.
  */
-$output.dynamicAnnotationTakeOver("javax.inject.Named", "javax.enterprise.context.RequestScoped")##
+@FacesValidator(value = "lenientBeanValidator")
 public class $output.currentClass extends BeanValidator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) {

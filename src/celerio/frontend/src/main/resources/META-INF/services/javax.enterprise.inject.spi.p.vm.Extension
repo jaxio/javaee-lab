@@ -1,4 +1,3 @@
 $output.resource("META-INF/services", "javax.enterprise.inject.spi.Extension")##
-${Util.packageName}.StartupBeanExtension
 ${WebFaces.packageName}.ViewContextExtension
 ${WebFaces.packageName}.ConversationContextScopedExtension

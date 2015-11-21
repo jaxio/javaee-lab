@@ -6,7 +6,7 @@ $output.file("src/main/config/glassfish/glassfish-resources.xml")##
         <property name="User" value="@jdbc.user@" />
         <property name="Password" value="@jdbc.password@" />
         <property name="USER" value="@jdbc.user@" />
-        <property name="PASSWORD" value="@jdbc.password@" />		
+        <property name="PASSWORD" value="@jdbc.password@" />
     </jdbc-connection-pool>
 
     <jdbc-resource jndi-name="app/jdbc/${configuration.applicationName}DS" pool-name="embeddedConnPool" />
