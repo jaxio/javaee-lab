@@ -8,9 +8,9 @@ Reverse a sample SQL schema and generate a full S-CRUD Java EE 7 web application
 
 The code generation is done by [Celerio](http://www.jaxio.com/en/).
 
-The project uses its own code generation templates, see [src/main/celerio](src/main/celerio).
+The project uses its own code generation templates, see [src/main/celerio](https://github.com/jaxio/javaee-lab/tree/master/src/celerio).
 
-The sample SQL schema is here: [src/main/sql/h2/01-create.sql](src/main/sql/h2/01-create.sql)
+The sample SQL schema is here: [src/main/sql/h2/01-create.sql](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql)
 
 Note that this is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
 
@@ -75,7 +75,7 @@ You may contribute in several ways:
 * By reviewing the generated code, is Java EE 7 properly used ?
 * By trying to generate a project using your own database schema
 
-You may of course [report issues](issues) and/or submit pull requests.
+You may of course [report issues](https://github.com/jaxio/javaee-lab/issues) and/or submit pull requests.
 
 # Limitations
 
