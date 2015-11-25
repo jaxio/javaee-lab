@@ -7,13 +7,7 @@
 Reverse a [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
 and generate a full S-CRUD Java EE 7 web application.
 
-By S-CRUD we mean:
-
-* **S**earch
-* **C**reate
-* **R**ead
-* **U**pdate
-* **D**elete
+S-CRUD means: **S**earch, **C**reate, **R**ead, **U**pdate, **D**elete
 
 The code generation is done by [Celerio](http://www.jaxio.com/en/).
 
