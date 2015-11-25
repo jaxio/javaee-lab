@@ -9,11 +9,11 @@ and generate a full S-CRUD Java EE 7 web application.
 
 By S-CRUD we mean:
 
-* **S**search
+* **S**earch
 * **C**reate
-* **R**read
-* **U**update
-* **D**delete
+* **R**ead
+* **U**pdate
+* **D**elete
 
 The code generation is done by [Celerio](http://www.jaxio.com/en/).
 
