@@ -1,18 +1,11 @@
-# Celerio templates: full Java EE 7 app
+# Full Java EE 7 app sample
 
 >>
 >> NOTE: This is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
 >> 
 
-Reverse a sample SQL schema and generate a full S-CRUD Java EE 7 web application.
-
-The code generation is done by [Celerio](http://www.jaxio.com/en/).
-
-The project uses its own code generation templates, see [src/main/celerio](https://github.com/jaxio/javaee-lab/tree/master/src/celerio).
-
-The sample SQL schema is here: [src/main/sql/h2/01-create.sql](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql)
-
-Note that this is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
+Reverse a [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
+and generate a full S-CRUD Java EE 7 web application.
 
 By S-CRUD we mean:
 
@@ -22,7 +15,11 @@ By S-CRUD we mean:
 * **U**update
 * **D**delete
 
-The generated application runs on WildFly 10, it is a pure Java EE 7 application:
+The code generation is done by [Celerio](http://www.jaxio.com/en/).
+
+The project uses its own code generation templates, see [src/main/celerio](https://github.com/jaxio/javaee-lab/tree/master/src/celerio).
+
+The generated application runs on WildFly 10, it is a pure Java EE 7 application, it relies on:
 
 * JPA with Hibernate
 * Search with Hibernate Search / Lucene
@@ -39,7 +36,9 @@ It also relies on house-made solutions for:
 
 * Java 8
 * Maven 3.1.1
-* Latest WildFly version (currently 10.0.0-CR4)
+* Latest [WildFly](http://wildfly.org/downloads/) version (we currently use 10.0.0-CR4)
+
+# How to run it
 
 ## Step 1: start WildFly
 
@@ -47,7 +46,7 @@ From wildfly distribution root folder, run:
 
     ./bin/standalone.sh
     
-## Step 2: reverse sample schema and generate the source
+## Step 2: reverse the sample SQL schema and generate the source code
     
 From this folder run from:
 
