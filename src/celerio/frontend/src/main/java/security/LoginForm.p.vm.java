@@ -36,8 +36,7 @@ $output.dynamicAnnotationTakeOver("javax.inject.Named"," ${WebFaces.packageName}
 public class $output.currentClass {
     public static final String HOME_URL = "/home.faces";
 
-    @Inject
-    private Logger log;
+    private Logger log = Logger.getLogger(${output.currentClass}.class.getName());
     @Inject
     private MessageUtil messageUtil;
 

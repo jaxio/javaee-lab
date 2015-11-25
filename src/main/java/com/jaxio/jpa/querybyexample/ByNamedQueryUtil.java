@@ -33,8 +33,7 @@ import java.util.logging.Logger;
 @Named
 public class ByNamedQueryUtil {
 
-    @Inject
-    private Logger log;
+    private Logger log = Logger.getLogger(ByNamedQueryUtil.class.getName());
 
     @Inject
     private EntityManager entityManager;

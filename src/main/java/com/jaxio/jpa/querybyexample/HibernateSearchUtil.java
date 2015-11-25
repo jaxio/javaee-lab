@@ -36,8 +36,7 @@ import static org.hibernate.search.jpa.Search.getFullTextEntityManager;
 @Named
 public class HibernateSearchUtil {
 
-    @Inject
-    private Logger log;
+    private Logger log = Logger.getLogger(HibernateSearchUtil.class.getName());
     @Inject
     private EntityManager entityManager;
 

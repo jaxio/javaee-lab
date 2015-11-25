@@ -27,9 +27,6 @@ $output.require("javax.servlet.ServletResponse")##
 $output.require("javax.servlet.http.HttpServletRequest")##
 $output.require("javax.servlet.http.HttpServletResponse")##
 
-$output.require("org.apache.commons.logging.Log")##
-$output.require("org.apache.commons.logging.LogFactory")##
-
 $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 @Named
@@ -38,8 +35,6 @@ public class LocaleResolverRequestFilter implements Filter {
 
     @Inject
     private LocaleResolver localeResolver;
-
-    protected final Log logger = LogFactory.getLog(getClass());
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

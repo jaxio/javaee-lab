@@ -125,6 +125,12 @@ $output.require($entity.collectionType.implementationFullType)##
 $output.require($manyToMany.to)##
     private ${entity.collectionType.type}<$manyToMany.to.type> $manyToMany.to.vars = new ${entity.collectionType.implementationType}<$manyToMany.to.type>();
 #end
+
+    @Override
+    public String entityClassName() {
+        return ${entity.model.type}.class.getSimpleName();
+    }
+
 #if ($entity.isRoot() && $entity.primaryKey.isComposite())
 
     // -----------------------

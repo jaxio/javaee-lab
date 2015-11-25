@@ -30,7 +30,7 @@ $output.require("javax.persistence.PersistenceContext")##
 @ApplicationScoped
 @Startup
 public class $output.currentClass {
-    @PersistenceContext
+    @PersistenceContext(unitName = "${configuration.applicationName}PU")
     private EntityManager entityManager;
 
     @Produces

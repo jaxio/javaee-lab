@@ -38,8 +38,7 @@ $serialVersionUID
     protected static final String INFO_LABEL = "LABEL";
     protected static final String INFO_URL = "URL";
     
-    @Inject
-    private transient Logger log;
+    private transient Logger log = Logger.getLogger(${output.currentClass}.class.getName());
     @Inject
     private ConversationBean conversation;
     private Collection<ConversationListener> conversationListeners = newHashSet();

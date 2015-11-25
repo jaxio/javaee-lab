@@ -27,7 +27,6 @@ $output.require("java.util.logging.Logger")##
 $output.require("java.util.ResourceBundle")##
 $output.require("com.google.common.collect.Lists")##
 
-$output.dynamicAnnotationTakeOver("org.apache.deltaspike.core.api.exclude.Exclude")##
 public class $output.currentClass implements MessageSource {
 
     protected Logger logger = Logger.getLogger(DefaultMessageSource.class.getName());

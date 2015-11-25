@@ -4,9 +4,6 @@ $output.webinf("web.xml")##
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" metadata-complete="false">
 	<module-name>${configuration.applicationName}</module-name>
-	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-	</listener>
   	<listener>
     	<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
 	</listener>
@@ -35,14 +32,14 @@ $output.webinf("web.xml")##
 		<filter-name>fileUploadFilter</filter-name>
 		<servlet-name>facesServlet</servlet-name>
 	</filter-mapping>
-	<filter>
-		<filter-name>sessionExpirationFilter</filter-name>
-		<filter-class>${WebFilter.packageName}.DelegatingFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sessionExpirationFilter</filter-name>
-		<servlet-name>facesServlet</servlet-name>
-	</filter-mapping>
+	<!--<filter>-->
+		<!--<filter-name>sessionExpirationFilter</filter-name>-->
+		<!--<filter-class>${WebFilter.packageName}.DelegatingFilter</filter-class>-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>sessionExpirationFilter</filter-name>-->
+		<!--<servlet-name>facesServlet</servlet-name>-->
+	<!--</filter-mapping>-->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>

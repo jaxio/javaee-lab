@@ -1,0 +1,43 @@
+$output.resource("META-INF", "persistence.xml")##
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+			 version="2.1">
+	<persistence-unit name="${configuration.applicationName}PU" transaction-type="JTA">
+
+		<description><![CDATA[
+			If you are running in a production environment, add a managed
+			data source, this example data source is just for development and testing.
+
+			Dev datasource is here: src/main/config/wildfly/${configuration.applicationName}-ds.xml
+			(see pom.xml, it gets copied to the right place during build time)
+			]]></description>
+
+		<jta-data-source>java:jboss/datasources/${configuration.applicationName}DS</jta-data-source>
+#foreach ($entity in $project.withoutManyToManyJoinEntities.list)
+#if(!$entity.isVirtual())
+		<class>${entity.model.fullType}</class>
+#end
+#end
+
+		<properties>
+			<!-- Properties for Hibernate -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.integration.envers.enabled" value="false" />
+			<property name="hibernate.envers.autoRegisterListeners" value="false" />
+
+#if($project.search.isNotEmpty())
+			<!-- not tested yet-->
+			<!--<property name="hibernate.search.model_mapping" value="${Search.packageName}.SearchMappingFactory" />-->
+#end
+#if($project.isAuditLogPresent())
+			<!-- not tested yet-->
+			<!--<property name="hibernate.ejb.event.post-delete" value="${Audit.packageName}.AuditLogListener" />-->
+			<!--<property name="hibernate.ejb.event.post-insert" value="${Audit.packageName}.AuditLogListener"/>-->
+			<!--<property name="hibernate.ejb.event.pre-update" value="${Audit.packageName}.AuditLogListener"/>-->
+#end
+		</properties>
+	</persistence-unit>
+</persistence>

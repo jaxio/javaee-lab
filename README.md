@@ -1,96 +1,84 @@
-
 # Celerio templates: full Java EE 7 app
 
-This is a work in progress...
+>>
+>> NOTE: This is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
+>> 
 
-To generate the source:
+Reverse a sample SQL schema and generate a full S-CRUD Java EE 7 web application.
 
-  mvn -Pdb,metadata,gen generate-sources
+The code generation is done by [Celerio](http://www.jaxio.com/en/).
 
-To run:
+The project uses its own code generation templates, see [src/main/celerio](src/main/celerio).
 
-  mvn -Pdb,metadata,gen package embedded-glassfish:run
+The sample SQL schema is here: [src/main/sql/h2/01-create.sql](src/main/sql/h2/01-create.sql)
 
-BEWARE, on macosx it create tmp files under /var/folders/mw/...
+Note that this is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
 
+By S-CRUD we mean:
 
-# Requirement: build your H2 Driver 
+* **S**search
+* **C**reate
+* **R**read
+* **U**update
+* **D**delete
 
-H2 driver is not JDBC 4.1 compliant... so you need to build your own.
-To do so...
-    git clone git@github.com:h2database/h2database.git
-    cd h2database/h2
-    build switchSource
-    build jar
-    cp bin/h2-1.4.190.jar ~/.m2/repository/com/h2database/h2/1.4.190/.
+The generated application runs on WildFly 10, it is a pure Java EE 7 application:
 
-More info here: http://www.h2database.com/html/build.html#environment
+* JPA with Hibernate
+* Search with Hibernate Search / Lucene
+* JSF 2.2
+* Primefaces 5.3 / Omnifaces
+* Shiro for authentication
 
+It also relies on house-made solutions for:
 
+* query by example
+* JSF conversation
 
-Below are old notes (need to rework):
+# Requirements
 
-DEPLOY ON A RUNNING GLASSFISH SERVER:
-=====================================
+* Java 8
+* Maven 3.1.1
+* Latest WildFly version (currently 10.0.0-CR4)
 
-  1/ deploy the datasource
-     asadmin add-resources src/main/webapp/WEB-INF/glassfish-resources.xml
+## Step 1: start WildFly
 
-  2/ deploy the war archive
-     asadmin deploy target/${configuration.applicationName}.war
+From wildfly distribution root folder, run:
 
+    ./bin/standalone.sh
+    
+## Step 2: reverse sample schema and generate the source
+    
+From this folder run from:
 
-KNOWN LIMITATIONS:
-==================
+    mvn -Pdb,metadata,gen generate-sources
 
-* https://java.net/jira/browse/GLASSFISH-20775
-  to circumvent it, remove the 'of' formatting date from the error.xhtml page
+## Step 3: deploy on WildFly
 
-* In AuditLogListener (if you use audit)
-  We had to add the following method to make it compile
-	@Override
-    public boolean requiresPostCommitHanding(EntityPersister persister) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+    mvn wildfly:undeploy  <== if you deployed previously, undeploy it first
 
-* https://hibernate.atlassian.net/browse/HSEARCH-1386 
-  hibernate search is not compatible with an hibernate version supporting jpa 2.1
-  To avoid it, simply generate a project that do not need hibernate search...
+    mvn wildfly:deploy
 
-* Beware of this incompatibility between EL 3.0 and EL 2.2
-  "The default coercion for nulls to non-primitive types (except String) returns 
-   nulls. For instance, a null coerced to Boolean now returns a null, while a 
-   null coerced to boolean returns false."
-   => it has an impact in search.xhtml
-   instead of 
-   		<c:if test="#{not multiCheckboxSelection}">
-   we now use        
-   		<c:if test="#{empty multiCheckboxSelection or not multiCheckboxSelection}">
+## Step 4: access the app and play
 
+    http://localhost:8080/demo
 
-TO BE DONE WHEN TIME PERMITS:
-=============================
+## Extra tips: delete generated code
 
-Currently, in 99% part of the code we reuse our javaee6 codebase.
-We have not modified places where we could leverage javaee7 for simplicity and lack of time reason.
-Here is a non exhaustive list:
+    mvn -PcleanGen clean
 
-* LoginForm should use CDI ViewScope which is compatible with JSF 2.2
-* register Hibernate Listener in a standard way is now possible
-* use new xsd information for JSF 2.2 in components.xml and in all xhtml page 
-  see for example http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/  
-  
-HELP:
-=====
+# Contribute
 
-* To get info on plugin goals:
-  mvn help:describe -Dplugin=embedded-glassfish
+You may contribute in several ways:
 
-* Tip and tricks + examples:
-  https://weblogs.java.net/blog/bhavanishankar/archive/2012/03/19/tips-tricks-and-troubleshooting-embedded-glassfish
+* By using the generated app and trying to find its limits
+* By reviewing the generated code, is Java EE 7 properly used ?
+* By trying to generate a project using your own database schema
 
-Other:
-======
+You may of course [report issues](issues) and/or submit pull requests.
 
-* http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/index.html#7
+# Limitations
+
+* Hibernate search not tested yet
+* LocalDate not supported by PrimeFaces p:calendar, even with our converter!
+

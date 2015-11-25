@@ -34,12 +34,8 @@ public class $output.currentClass {
     private MessageSource messageSource;
     
     public ${output.currentClass}() {
-    }
-
-    @Inject
-    public ${output.currentClass}(MessageSource ms) {
-        messageSource = ms;
         instance = this;
+        messageSource = createMessageSource();
     }
 
     /**
@@ -113,5 +109,34 @@ public class $output.currentClass {
         default:
             return getProperty(key + "_n", count);
         }
+    }
+
+    private MessageSource createMessageSource() {
+        MessageSource messageSource = new DefaultMessageSource();
+        messageSource.setBasenames( //
+        // global
+        "localization/messages", //
+        "localization/application", //
+#foreach($entity in $project.withoutManyToManyJoinEntities.list)
+#if ($velocityCount == 1)
+        // entities
+#end
+        "localization/domain/$entity.model.type", //
+#end
+#foreach($enumType in $project.enumTypes)
+#if ($velocityCount == 1)
+        // enums
+#end
+        "localization/domain/$enumType.model.type", //
+#end
+        // pages
+        "localization/pages/concurrentModificationResolution", //
+        "localization/pages/home", //
+        "localization/pages/login", //
+        // validation
+        "ValidationMessages", //
+        "javax/faces/Messages", //
+        "org/hibernate/validator/ValidationMessages");
+        return messageSource;
     }
 }

@@ -1,0 +1,21 @@
+$output.file("src/main/config/wildfly/${configuration.applicationName}-ds.xml")##
+<!-- This is an unmanaged datasource. It should be used for proofs of concept
+   or testing only. It uses H2, a lightweight, in-memory, example database.
+   It is not robust or scalable, is not supported, and should NOT be used in a production environment! -->
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+
+    <!-- The datasource is bound into JNDI at this location.
+    We reference this in META-INF/persistence.xml -->
+    <datasource jndi-name="java:jboss/datasources/${configuration.applicationName}DS"
+                pool-name="${configuration.applicationName}DS" enabled="true"
+                use-java-context="true">
+        <connection-url>@jdbc.url@</connection-url>
+        <driver>h2</driver>
+        <security>
+            <user-name>@jdbc.user@</user-name>
+            <password>@jdbc.password@</password>
+        </security>
+    </datasource>
+</datasources>

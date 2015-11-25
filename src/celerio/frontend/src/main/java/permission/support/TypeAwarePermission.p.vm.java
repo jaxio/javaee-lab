@@ -15,7 +15,7 @@
 $output.java($WebPermissionSupport, "TypeAwarePermission")##
 
 $output.requireStatic("com.google.common.collect.Maps.newHashMap")##
-$output.requireStatic("org.hibernate.proxy.HibernateProxyHelper.getClassWithoutInitializingProxy")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require("java.io.Serializable")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.inject.Instance")##
@@ -30,20 +30,18 @@ $output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.dynamicAnnotationTakeOver('javax.inject.Named("permission")')##
 @SuppressWarnings("rawtypes")
 public class ${output.currentClass} {
-    private Map<Class, GenericPermission<?>> permissions = newHashMap();
+    private Map<String, GenericPermission<?>> permissions = newHashMap();
 
     @Inject
     void buildCache(Instance<GenericPermission<?>> registredPermissions) {
         for (GenericPermission<?> permission : registredPermissions) {
-            permissions.put(permission.getTarget(), permission);
+            permissions.put(permission.getTarget().getSimpleName(), permission);
         }
     }
 
     @SuppressWarnings("unchecked")
     private <E extends Identifiable<? extends Serializable>> GenericPermission<E> getPermission(E entity) {
-        // note: getClassWithoutInitializingProxy expects a non null object
-        // _HACK_ as we depend on hibernate here.
-        return (GenericPermission<E>) permissions.get(getClassWithoutInitializingProxy(entity));
+        return (GenericPermission<E>) permissions.get(((Identifiable) entity).entityClassName());
     }
     
     // --------------------------------------------------------------

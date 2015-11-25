@@ -4,7 +4,7 @@
         <packs>
             <pack name="pack-javaee-jpa" path="src/celerio/backend" enable="true"/>
             <pack name="pack-javaee-jsf" path="src/celerio/frontend" enable="true"/>
-            <pack name="pack-javaee-glassfish" path="src/celerio/glassfish" enable="true"/>
+            <pack name="pack-javaee-wildfly" path="src/celerio/wildfly" enable="true"/>
         </packs>
     </configuration>
 </celerio>

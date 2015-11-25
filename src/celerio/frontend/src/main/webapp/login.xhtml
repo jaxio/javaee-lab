@@ -17,7 +17,7 @@
 	<ui:define name="content">
 		<p:panel id="loginPanel" header="#{msg.login_header}" styleClass="loginBox">
 			<p:focus context="loginPanel"/>
-			<h:outputText value="#{msg.login_description}" />
+			<h:outputText value="#{msg.login_description}" escape="false"/>
 			<h:panelGrid columns="1">
 				<appcc:messages id="loginMessages" />
 			</h:panelGrid>
@@ -26,8 +26,6 @@
 				<h:inputText id="username" label="#{msg.login_login}" value="#{loginForm.username}" required="true" />
 				<h:outputLabel for="password" value="#{msg.login_password}" styleClass="required" />
 				<h:inputSecret id="password" label="#{msg.login_password}" value="#{loginForm.password}" required="true" />
-				<h:outputLabel for="rememberMe" value="Remember Me" />
-            	<h:selectBooleanCheckbox id="rememberMe" value="#{loginForm.rememberMe}"/>				
 				<p:spacer/>
 				<p:commandButton id="login" value="#{msg.login_submit}" action="#{loginForm.submit}" icon="ui-icon-circle-check" update="loginMessages" />
 			</h:panelGrid>

@@ -100,7 +100,7 @@ public class JpaUniqueUtil {
     }
 
     private String simpleUniqueConstraintError(Identifiable<?> entity, String property) {
-        return WordUtils.uncapitalize(jpaUtil.getEntityName(entity)) + "_" + property + "_already_exists";
+        return WordUtils.uncapitalize(entity.entityClassName()) + "_" + property + "_already_exists";
     }
 
     private List<String> validateCompositeUniqueConstraints(Identifiable<?> entity) {
@@ -119,7 +119,7 @@ public class JpaUniqueUtil {
     }
 
     private String compositeUniqueConstraintErrorCode(Identifiable<?> entity, UniqueConstraint uniqueConstraint) {
-        return WordUtils.uncapitalize(jpaUtil.getEntityName(entity)) + "_"
+        return WordUtils.uncapitalize(entity.entityClassName()) + "_"
                 + (uniqueConstraint.name() == null ? "composite_unique_constraint_error" : uniqueConstraint.name().toLowerCase());
     }
 
@@ -169,7 +169,7 @@ public class JpaUniqueUtil {
         if (entity == null || values == null || values.isEmpty()) {
             return false;
         }
-        String entityName = jpaUtil.getEntityName(entity);
+        String entityName = entity.entityClassName();
         String sqlQuery = "select count(c) from " + entityName + " c where";
         boolean first = true;
         for (Map.Entry<String, Object> property : values.entrySet()) {

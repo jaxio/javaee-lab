@@ -22,7 +22,10 @@ import org.apache.commons.lang.WordUtils;
 import javax.ejb.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Query;
 import javax.persistence.criteria.*;
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.ManagedType;
@@ -41,8 +44,6 @@ import static com.google.common.collect.Iterables.toArray;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static java.lang.reflect.Modifier.isPublic;
-import static org.apache.commons.lang.StringUtils.isBlank;
-import static org.hibernate.proxy.HibernateProxyHelper.getClassWithoutInitializingProxy;
 
 @ApplicationScoped
 @Named
@@ -283,14 +284,6 @@ public class JpaUtil {
             ret.add(attribute.getName());
         }
         return ret;
-    }
-
-    public String getEntityName(Identifiable<?> entity) {
-        Entity entityAnnotation = entity.getClass().getAnnotation(Entity.class);
-        if (isBlank(entityAnnotation.name())) {
-            return getClassWithoutInitializingProxy(entity).getSimpleName();
-        }
-        return entityAnnotation.name();
     }
 
     public String methodToProperty(Method m) {

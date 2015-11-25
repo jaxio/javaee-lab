@@ -33,8 +33,8 @@ $output.require($Context, "UserWithId")##
 
 $output.dynamicAnnotationTakeOver("javax.ejb.Singleton")##
 public class $output.currentClass {
-    @Inject
-    private Logger log;
+
+    private Logger log = Logger.getLogger(${output.currentClass}.class.getName());
 #if ($project.isAccountEntityPresent())
 $output.require($project.accountEntity.model)##
 $output.require($project.accountEntity.repository)##    

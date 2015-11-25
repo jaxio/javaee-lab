@@ -62,8 +62,9 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     @Inject
     protected EntityManager entityManager;
     protected Class<E> type;
-    @Inject
-    protected Logger log;
+
+    protected Logger log = Logger.getLogger(GenericRepository.class.getName());
+
     protected String cacheRegion;
 
     public GenericRepository() {
@@ -537,6 +538,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * Merge the state of the given entity into the current persistence context.
      */
     public E merge(E entity) {
+        System.out.println("merge: " + entity.entityClassName() + ": " +entity + ": " + entity.getId());
         return entityManager.merge(entity);
     }
 

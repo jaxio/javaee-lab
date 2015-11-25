@@ -15,7 +15,7 @@
 $output.java($PrinterSupport, "TypeAwarePrinter")##
 
 $output.requireStatic("com.google.common.collect.Maps.newHashMap")##
-$output.requireStatic("org.hibernate.proxy.HibernateProxyHelper.getClassWithoutInitializingProxy")##
+$output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require("java.util.Locale")##
 $output.require("java.util.Map")##
 $output.require("javax.enterprise.inject.Instance")##
@@ -27,12 +27,12 @@ $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
  */
 $output.dynamicAnnotationTakeOver("javax.enterprise.context.ApplicationScoped",'javax.inject.Named("printer")')##
 public class $output.currentClass {
-	private Map<Class<?>, GenericPrinter<?>> printers = newHashMap();
+	private Map<String, GenericPrinter<?>> printers = newHashMap();
 
 	@Inject
 	void buildCache(Instance<GenericPrinter<?>> registredPrinters) {
 		for (GenericPrinter<?> printer : registredPrinters) {
-			printers.put(printer.getTarget(), printer);
+			printers.put(printer.getTarget().getSimpleName(), printer);
 		}
 	}
 
@@ -46,10 +46,8 @@ public class $output.currentClass {
 			return "";
 		}
  
-		// note: getClassWithoutInitializingProxy expects a non null object
-		// _HACK_ as we depend on hibernate here.
         @SuppressWarnings("rawtypes")
-		GenericPrinter printer = printers.get(getClassWithoutInitializingProxy(object));
+		GenericPrinter printer = printers.get(((Identifiable) object).entityClassName());
 		return printer == null ? object.toString() : printer.print(object, locale);
 	}
 }

@@ -37,8 +37,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @ApplicationScoped
 @Named
 public class ByExampleUtil {
-    @Inject
-    private Logger log;
+    private Logger log = Logger.getLogger(ByExampleUtil.class.getName());
     @Inject
     private JpaUtil jpaUtil;
     @Inject

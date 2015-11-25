@@ -24,7 +24,7 @@ $output.require("java.time.format.DateTimeFormatter")##
 $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 /**
- * JSF converter for JodaTime {@link LocalDate}.
+ * JSF converter for {@link LocalDate}.
  */
 @FacesConverter(forClass = LocalDate.class, value = "localDateConverter")
 public class LocalDateConverter implements Converter, PartialStateHolder {

@@ -57,8 +57,7 @@ public abstract class ${output.currentClass}<E extends Identifiable<PK>, PK exte
     private String selectUri;
     private String editUri;
 
-    @Inject
-    private Logger log;
+    private transient Logger log = Logger.getLogger(${output.currentClass}.class.getName());
     @Inject
     protected ConversationManager conversationManager;
     @Inject

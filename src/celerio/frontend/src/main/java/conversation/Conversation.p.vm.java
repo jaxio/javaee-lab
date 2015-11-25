@@ -64,8 +64,7 @@ public class $output.currentClass implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final String CONVERSATION_COUNTER_KEY = "convCounter";
 
-    @Inject
-    private transient Logger log;
+    private transient Logger log = Logger.getLogger(${output.currentClass}.class.getName());
     @Inject
     private Conversation rawConversation;
 

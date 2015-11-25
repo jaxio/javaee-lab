@@ -1,6 +1,6 @@
 DROP ALL OBJECTS;
 
-CREATE SEQUENCE hibernate_sequence START WITH 1000;
+--CREATE SEQUENCE hibernate_sequence START WITH 1000;
 
 CREATE TABLE USER (
     id                       int not null IDENTITY,
@@ -112,92 +112,3 @@ CREATE TABLE SAVED_SEARCH (
     constraint saved_search_fk_1 foreign key (user_id) references USER,
     primary key (id)
 );
-
-INSERT INTO USER (login, password, email) VALUES ('admin', 'admin', 'admin@example.com');
-
-INSERT INTO ROLE (role_name) VALUES ('ROLE_ADMIN');
-INSERT INTO ROLE (role_name) VALUES ('ROLE_USER');
-INSERT INTO ROLE (role_name) VALUES ('ROLE_MONITORING');
-
-INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1);
-INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 2);
-INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 3);
-
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('EUR', 'Euro', 2);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('USD', 'Dollar des états-unis', 2);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('GBP', 'Livre Sterling', 2);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('CAD', 'Dollar canadien', 2);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('CHF', 'Franc suisse', 2);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('JPY', 'Yen', 0);
-INSERT INTO CURRENCY (code, name, decimal_count) VALUES ('SEK', 'Couronne suédoise', 2);
-
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('1 RUE DE LA BANQUE', '75000', 'Paris', 'France');
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('2 RUE DE LA BANQUE', '75000', 'Paris', 'France');
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('3 RUE DE LA BANQUE', '75000', 'Paris', 'France');
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('NY', '10045', 'New-York', 'Etats-Unis');
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('AL', '16000', 'Alger', 'Algérie');
-INSERT INTO ADDRESS (street, zip_code, city, country) VALUES ('4 RUE DE LA BANQUE', '75000', 'Paris', 'France');
-
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('Trésor Public', 1);
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('BNP Paribas', 2);
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('Société Générale', 3);
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('Federal Reserve bank of New York', 4);
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('Banque d''Algérie', 5);
-INSERT INTO CUSTOMER (company_name, address_id) VALUES ('Ministère du Budget', 6);
-
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0001001', 'Compte 1', 1, 1);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0001002', 'Compte 2', 2, 1);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0002001', 'Compte 1', 1, 2);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0002002', 'Compte 2', 2, 2);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0003001', 'Compte 1', 1, 3);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0003002', 'Compte 2', 2, 3);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0003003', 'Compte 3', 6, 3);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0004001', 'Compte 1', 1, 4);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0004002', 'Compte 2', 2, 4);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0004003', 'Compte 3', 4, 4);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0004004', 'Compte 4', 6, 4);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0005001', 'Compte 1', 1, 5);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0005002', 'Compte 2', 2, 5);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0006001', 'Compte 1', 1, 6);
-INSERT INTO ACCOUNT (account_number, name, currency_id, customer_id) VALUES ('0006002', 'Compte 2', 2, 6);
-
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 100000, '2013-01-08', '2013-01-11', 1, 'Réglement 1');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, -50000, '2013-01-09', '2013-01-12', 1, 'Réglement 2');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 250000, '2013-01-10', '2013-01-13', 1, 'Réglement 3');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, -5000000, '2013-01-11', '2013-01-14', 1, 'Réglement 4');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 2000000, '2013-01-12', '2013-01-15', 1, 'Réglement 5');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 100000, '2013-01-13', '2013-01-16', 1, 'Réglement 6');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 500000, '2013-01-14', '2013-01-17', 1, 'Réglement 7');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, -5000000, '2013-01-15', '2013-01-18', 1, 'Réglement 8');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 9000000, '2013-01-16', '2013-01-19', 1, 'Réglement 9');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (1, 200000, '2013-01-17', '2013-01-20', 1, 'Réglement 10');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 100000, '2013-01-08', '2013-01-11', 2, 'Réglement 1');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, -50000, '2013-01-09', '2013-01-12', 2, 'Réglement 2');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 250000, '2013-01-10', '2013-01-13', 2, 'Réglement 3');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, -5000000, '2013-01-11', '2013-01-14', 2, 'Réglement 4');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 2000000, '2013-01-12', '2013-01-15', 2, 'Réglement 5');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 100000, '2013-01-13', '2013-01-16', 2, 'Réglement 6');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 500000, '2013-01-14', '2013-01-17', 2, 'Réglement 7');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, -5000000, '2013-01-15', '2013-01-18', 2, 'Réglement 8');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 9000000, '2013-01-16', '2013-01-19', 2, 'Réglement 9');
-INSERT INTO TRANSACTION (account_id, amount, transaction_date, value_date, currency_id, description)
-                VALUES (2, 200000, '2013-01-17', '2013-01-20', 2, 'Réglement 10');

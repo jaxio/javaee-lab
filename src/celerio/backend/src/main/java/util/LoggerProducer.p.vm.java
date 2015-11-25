@@ -14,10 +14,12 @@
 ##
 $output.java($Util, "LoggerProducer")##
 
-$output.require("javax.enterprise.inject.Produces")
-$output.require("javax.enterprise.inject.spi.InjectionPoint")
-$output.require("java.util.logging.Logger")
+$output.require("javax.enterprise.context.ApplicationScoped")##
+$output.require("javax.enterprise.inject.Produces")##
+$output.require("javax.enterprise.inject.spi.InjectionPoint")##
+$output.require("java.util.logging.Logger")##
 
+@ApplicationScoped
 public class $output.currentClass {
 
     @Produces

@@ -5,7 +5,7 @@
  * Need commercial support ? Contact us: info@jaxio.com
  * Template pack-custom:backend/main/java/repository/support/ReadOnly.p.vm.java
  */
-package com.jaxio.javaeelab.repository.support;
+package com.jaxio.jpa.querybyexample;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;

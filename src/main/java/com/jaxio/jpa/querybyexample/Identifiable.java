@@ -23,6 +23,9 @@ import java.io.Serializable;
  */
 public interface Identifiable<PK extends Serializable> {
 
+    String entityClassName();
+
+
     /**
      * @return the primary key
      */

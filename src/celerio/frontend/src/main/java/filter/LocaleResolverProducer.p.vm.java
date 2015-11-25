@@ -19,6 +19,7 @@ $output.require("javax.enterprise.context.ApplicationScoped")##
 $output.require("javax.enterprise.inject.Produces")##
 $output.require("javax.inject.Named")##
 
+$output.dynamicAnnotation("javax.enterprise.context.ApplicationScoped")
 public class $output.currentClass {
     
     @Produces

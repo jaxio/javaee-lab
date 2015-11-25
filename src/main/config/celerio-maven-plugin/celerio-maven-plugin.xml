@@ -20,6 +20,10 @@
             <!-- <dateMapping columnNameRegExp="VERSION" mappedType="M_UTILDATE"/> -->
             <!-- <dateMapping columnJdbcType="TIMESTAMP" mappedType="M_LOCALDATETIME"/> -->
             <!-- <dateMapping columnJdbcType="DATE" mappedType="M_LOCALDATE"/> -->
+            <!-- use java.util.Date as PrimeFaces 5.3 p:calendar is buggy.
+                 see https://github.com/primefaces/primefaces/issues/839 -->
+             <dateMapping columnJdbcType="TIMESTAMP" mappedType="M_UTILDATE"/>
+             <dateMapping columnJdbcType="DATE" mappedType="M_UTILDATE"/>
         </dateMappings>
 
         <!-- default configuration for fetch type / cascades / 2d level cache -->
@@ -297,12 +301,12 @@
                         <label value="Montant" lang="fr"/>
                     </labels>
                 </columnConfig>
-                <columnConfig columnName="transaction_date" mappedType="M_LOCALDATE">
+                <columnConfig columnName="transaction_date">
                     <labels>
                         <label value="Date de la transaction" lang="fr"/>
                     </labels>
                 </columnConfig>
-                <columnConfig columnName="value_date" mappedType="M_LOCALDATE">
+                <columnConfig columnName="value_date">
                     <labels>
                         <label value="Date de valeur" lang="fr"/>
                     </labels>

@@ -16,6 +16,7 @@
 package com.jaxio.jpa.querybyexample;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.Dependent;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;

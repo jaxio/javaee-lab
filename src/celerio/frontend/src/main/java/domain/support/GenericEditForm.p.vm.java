@@ -26,7 +26,7 @@ $output.require("com.jaxio.jpa.querybyexample.Identifiable")##
 $output.require($PrinterSupport, "TypeAwarePrinter")##
 $output.require("com.jaxio.jpa.querybyexample.EntityGraphLoader")##
 $output.require("com.jaxio.jpa.querybyexample.GenericRepository")##
-$output.require("com.jaxio.jpa.querybyexample.RepositoryLocator")##
+$output.require($RepositorySupport, "RepositoryLocator")##
 $output.require($Util, "ResourcesUtil")##
 $output.require($WebUtil, "MessageUtil")##
 $output.require($WebUtil, "TabBean")##
