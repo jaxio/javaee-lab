@@ -56,7 +56,7 @@ From this folder run from:
 
     http://localhost:8080/demo
 
-## Extra tips: delete generated code
+## Extra tip: delete generated code
 
     mvn -PcleanGen clean
 
