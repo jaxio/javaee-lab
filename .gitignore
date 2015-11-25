@@ -5,10 +5,9 @@
 src/main/generated-java
 src/test/generated-java
 src/main/webapp
-src/main/resources
 src/main/config/celerio-maven-plugin/metadata.xml
-src/main/config/glassfish
 target/
+src/main/config/wildfly
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

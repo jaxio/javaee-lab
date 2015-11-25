@@ -62,8 +62,7 @@
 
         <!-- h2 jdbc settings -->
         <jdbc.driver>org.h2.Driver</jdbc.driver>
-        <!--<jdbc.url>jdbc:h2:~/.h2/${database.name};MVCC=TRUE;FILE_LOCK=NO</jdbc.url>-->
-        <jdbc.url>jdbc:h2:mem:${database.name}</jdbc.url>
+        <jdbc.url>jdbc:h2:mem:${database.name}</jdbc.url><!-- for runtime -->
         <jdbc.user>${database.user}</jdbc.user>
         <jdbc.password>${database.password}</jdbc.password>
         <jdbc.schema></jdbc.schema>
@@ -593,6 +592,9 @@
             <!-- Extract the database metadata -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <id>metadata</id>
+            <properties>
+                <jdbc.url>jdbc:h2:~/.h2/${database.name};MVCC=TRUE;FILE_LOCK=NO</jdbc.url>
+            </properties>
             <build>
                 <defaultGoal>generate-sources</defaultGoal>
                 <plugins>
