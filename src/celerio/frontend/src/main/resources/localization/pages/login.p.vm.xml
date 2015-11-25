@@ -19,7 +19,6 @@ $output.resource("localization/pages", "login.xml")##
 		</p>
 		<ul>
 			<li><strong>admin/admin</strong>: can access all data</li>
-			<li>user/user: can access only home page</li>
 		</ul>
 	]]></entry>
 </properties>

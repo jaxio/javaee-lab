@@ -50,7 +50,6 @@ ${brandUtil.copyLogoToFolder("src/main/webapp/resources/img")}##
 									<h:outputLink id="home_link" value="#{facesContext.externalContext.requestContextPath}/home.faces" styleClass="userInfo-welcome">#{msg.home}</h:outputLink>
 									<p:commandLink id="switchToFrench" action="#{localeService.switchToFrench()}" styleClass="userInfo-fr" rendered="#{!localeService.isFrench()}" ajax="false"/>
 									<p:commandLink id="switchToEnglish" action="#{localeService.switchToEnglish()}" styleClass="userInfo-en" rendered="#{localeService.isFrench()}" ajax="false"/>
-									<h:outputLink value="#{facesContext.externalContext.requestContextPath}/monitoring" rendered="#{userContextService.hasRole('ROLE_MONITORING')}">Monitoring</h:outputLink>
 								</td>
 							</tr>
 						</table>

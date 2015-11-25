@@ -18,7 +18,6 @@ $output.resource("localization/pages", "login_fr.xml")##
 		</p>
 		<ul>
 			<li><strong>admin/admin</strong>: accède à toutes les données</li>
-			<li>user/user:  accède uniquement à la page d'accueil</li>
 		</ul>
 	]]></entry>
 </properties>
