@@ -18,7 +18,7 @@ The generated application runs on WildFly 10, it is a pure Java EE 7 application
 * JPA with Hibernate
 * Search with Hibernate Search / Lucene
 * JSF 2.2
-* Primefaces 5.3 / Omnifaces
+* Primefaces 5.3 / Omnifaces 2.1
 * Shiro for authentication
 
 It also relies on house-made solutions for:
@@ -72,6 +72,6 @@ You may of course [report issues](https://github.com/jaxio/javaee-lab/issues) an
 
 # Limitations
 
-* Hibernate search not tested yet
+* Cache does not seem to work (ehcache)
 * LocalDate not supported by PrimeFaces p:calendar, even with our converter!
 
