@@ -3,7 +3,7 @@
 -- We use negative ids to avoid conflict with ids created when using the application
 -- Known limitation: it does not support accents... Would be nice to fix it.
 
-INSERT INTO USER (id, login, password, email, is_enabled) VALUES (-1, 'admin', 'admin', 'admin@example.com', true);
+INSERT INTO USER (id, login, password, email, is_enabled, version) VALUES (-1, 'admin', 'admin', 'admin@example.com', true, 1);
 
 INSERT INTO ROLE (id, role_name) VALUES (-1, 'ROLE_ADMIN');
 INSERT INTO ROLE (id, role_name) VALUES (-2, 'ROLE_USER');

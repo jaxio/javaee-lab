@@ -21,16 +21,33 @@ $output.resource("META-INF", "persistence.xml")##
 #end
 
 		<properties>
-			<!-- Properties for Hibernate -->
+			<!-- Hibernate -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="@hibernate.show.sql@" />
+			<property name="hibernate.format_sql" value="@hibernate.format.sql@" />
+			<property name="hibernate.generate_statistics" value="@hibernate.generate_statistics@" />
+			<property name="hibernate.use_sql_comments" value="@hibernate.use_sql_comments@" />
+
+			<!-- please uncomment if needed (not used by H2) -->
+			<property name="hibernate.default_schema" value="" />
+
+			<!-- see https://hibernate.atlassian.net/browse/HHH-9106, wondering if it is really that bad -->
+			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
+
+			<!-- 2d level Cache with EHcache -->
+			<property name="hibernate.cache.use_query_cache" value="@hibernate.use.query.cache@"/>
+			<property name="hibernate.cache.use_second_level_cache" value="@hibernate.use.second.level.cache@"/>
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+			<property name="net.sf.ehcache.configurationResourceName" value="@hibernate.ehcache.configuration.file@"/>
+
 			<property name="hibernate.integration.envers.enabled" value="false" />
 			<property name="hibernate.envers.autoRegisterListeners" value="false" />
-
 #if($project.search.isNotEmpty())
-			<!-- not tested yet-->
-			<!--<property name="hibernate.search.model_mapping" value="${Search.packageName}.SearchMappingFactory" />-->
+
+			<!-- Hibernate Search -->
+			<property name="hibernate.search.model_mapping" value="${Search.packageName}.SearchMappingFactory" />
+			<property name="hibernate.search.default.directory_provider" value="ram" />
 #end
 #if($project.isAuditLogPresent())
 			<!-- not tested yet-->

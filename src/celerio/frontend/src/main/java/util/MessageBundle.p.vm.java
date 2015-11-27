@@ -21,11 +21,9 @@ $output.require($Util, "ResourcesUtil")##
 /**
  * This {@link ResourceBundle} is set in faces-config.xml under <code>msg</code> var.
  * <p>
- * Implementation uses Spring {@link MessageSource}.
- * <p>
  * From your JSF2 pages, you may use <code>#{msg.property_key}</code>.
  * <p>
- * _HACK_ as it is a tricky JSF/Spring integration point.
+ * _HACK_ as it is a tricky integration point.
  */
 public class $output.currentClass extends ResourceBundle {
 

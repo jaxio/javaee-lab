@@ -29,24 +29,29 @@ $output.require($Util,"IntConfig")##
 $output.require($entity.model)##
 #end
 
-$output.dynamicAnnotationTakeOver("javax.enterprise.context.ApplicationScoped","javax.inject.Named","${Util.packageName}.Startup")##
+$output.dynamicAnnotationTakeOver("javax.ejb.Singleton","javax.inject.Named","javax.ejb.Startup")##
 public class $output.currentClass {
 	@Inject
     private Logger log;
+
     protected static Class<?>[] CLASSES_TO_BE_INDEXED = { //
 #foreach($entity in $project.search.list)
-		#if ($velocityCount > 1), #end${entity.model.type}.class //
+			#if ($velocityCount > 1), #end${entity.model.type}.class //
 #end
     };
+
     @PersistenceContext // inject would not work as we use it outside of a request scoped.
     protected EntityManager entityManager;
+
     @Inject
     @IntConfig(name="massIndexer.nbThreadsToLoadObjects", defaultValue = 1)
     protected int threadsToLoadObjects;
-    @Inject 
+
+    @Inject
     @IntConfig(name="massIndexer.batchSizeToLoadObjects", defaultValue = 10)
     protected int batchSizeToLoadObjects;
-    @Inject 
+
+    @Inject
     @IntConfig(name="massIndexer.nbThreadsForSubsequentFetching", defaultValue = 1)
     protected int threadsForSubsequentFetching;
 
@@ -70,9 +75,8 @@ public class $output.currentClass {
 		try {
             getFullTextEntityManager(entityManager) //
 					.createIndexer(classToBeIndexed) //
-                    .batchSizeToLoadObjects(batchSizeToLoadObjects) //
-                    .threadsToLoadObjects(threadsToLoadObjects) //
-                    .threadsForSubsequentFetching(threadsForSubsequentFetching) //
+//                    .batchSizeToLoadObjects(batchSizeToLoadObjects) //
+//                    .threadsToLoadObjects(threadsToLoadObjects) //
 					.startAndWait();
 		} catch (InterruptedException e) {
 			log.warning("Interrupted while indexing " + classToBeIndexed.getSimpleName());

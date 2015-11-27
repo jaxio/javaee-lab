@@ -22,8 +22,7 @@ $output.require("com.jaxio.jpa.querybyexample.LocaleHolder")##
 
 /**
  * ResourcesUtil allows you to retrieve localized resources for the locale present in the current thread of execution.
- * It can be used from both Spring beans (simple dependency injection) and from non spring beans. In the later case,
- * you obtain the reference thanks to the static method ResourcesUtil.getInstance()
+ * You can either inject it or use the static method ResourcesUtil.getInstance().
  */
 @ApplicationScoped
 @Named
@@ -39,7 +38,8 @@ public class $output.currentClass {
     }
 
     /**
-     * Call it from non spring aware code to obtain a reference to the ${output.currentClass} singleton instance.
+     * Call it from code that cannot get a reference to the ${output.currentClass}
+     * singleton instance through dependency injection.
      */
     public static ${output.currentClass} getInstance() {
         return instance;

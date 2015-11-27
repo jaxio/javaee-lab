@@ -2,12 +2,12 @@
 .idea/
 *.iml
 *.class
-src/main/generated-java
-src/test/generated-java
-src/main/webapp
 src/main/config/celerio-maven-plugin/metadata.xml
+src/main/generated-java
+src/main/resources
+src/main/webapp
+src/test/generated-java
 target/
-src/main/config/wildfly
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

@@ -14,11 +14,13 @@
 ##
 $output.java($Util, "ConfigPropertyProducer")##
 
+$output.require("javax.enterprise.context.ApplicationScoped")##
 $output.require("javax.enterprise.inject.Produces")##
 $output.require("javax.enterprise.inject.spi.InjectionPoint")##
 $output.require("javax.inject.Inject")##
 $output.require("org.apache.deltaspike.core.util.BeanUtils")##
 
+@ApplicationScoped
 public class $output.currentClass {
 
     @Inject

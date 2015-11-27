@@ -90,16 +90,16 @@
         <log.target>${project.build.directory}/logs</log.target>
         <log.level>DEBUG</log.level>
         <log.sql.queries.level>DEBUG</log.sql.queries.level>
-        <!-- hibernate, see by src/main/resource/hibernate.properties -->
+
+        <!-- hibernate, see by src/main/resource/persistence.xml -->
         <hibernate.show.sql>true</hibernate.show.sql>
         <hibernate.format.sql>true</hibernate.format.sql>
         <hibernate.generate_statistics>true</hibernate.generate_statistics>
         <hibernate.use_sql_comments>true</hibernate.use_sql_comments>
+
+        <hibernate.use.query.cache>true</hibernate.use.query.cache>
+        <hibernate.use.second.level.cache>true</hibernate.use.second.level.cache>
         <hibernate.ehcache.configuration.file>ehcache.xml</hibernate.ehcache.configuration.file>
-        <hibernate.use.second.level.cache>false</hibernate.use.second.level.cache>
-        <hibernate.use.query.cache>false</hibernate.use.query.cache>
-
-
     </properties>
 
     <dependencyManagement>
@@ -165,7 +165,13 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Import the JTA API, we use provided scope as the API is included in JBoss WildFly -->
@@ -428,6 +434,10 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/sql/h2</directory><!-- we just need the import.sql -->
+                <filtering>false</filtering>
             </resource>
         </resources>
         <testResources>

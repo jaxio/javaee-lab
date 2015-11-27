@@ -124,7 +124,7 @@
                     <labels>
                         <label value="Prénom" lang="fr"/>
                     </labels>
-                    <!--<indexedField/>-->
+                    <indexedField/>
                 </columnConfig>
                 <columnConfig columnName="last_name">
                     <labels>
