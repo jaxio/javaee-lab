@@ -48,10 +48,10 @@ $serialVersionUID
                 if (ccid != null) {
                     getConversationManager().resumeConversation(ccid);
                 } else if (beginSearch != null) {
-                    BeanProvider.getContextualReference(beginSearch, false, GenericController.class).beginSearch();
+                    ((GenericController) BeanProvider.getContextualReference(beginSearch, false)).beginSearch();
                     redirectToConversationUrl();
                 } else if (beginCreate != null) {
-                    BeanProvider.getContextualReference(beginCreate, false, GenericController.class).beginCreate();
+                    ((GenericController) BeanProvider.getContextualReference(beginCreate, false)).beginCreate();
                     redirectToConversationUrl();
                 }
             } catch (UnexpectedConversationException e) {
