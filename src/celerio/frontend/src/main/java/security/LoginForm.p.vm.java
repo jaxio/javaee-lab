@@ -15,6 +15,7 @@
 $output.java($WebSecurity, "LoginForm")##
 
 $output.require("java.io.IOException")##
+$output.require("java.io.Serializable")##
 $output.require("java.util.logging.Level")##
 $output.require("java.util.logging.Logger")##
 $output.require("javax.faces.context.ExternalContext")##
@@ -30,15 +31,16 @@ $output.require("org.omnifaces.util.Faces")##
 $output.require($WebUtil, "MessageUtil")##
 
 /**
- * more info on login: http://balusc.blogspot.fr/2013/01/apache-shiro-is-it-ready-for-java-ee-6.html
+ * More info on login: http://balusc.blogspot.fr/2013/01/apache-shiro-is-it-ready-for-java-ee-6.html
  */
-$output.dynamicAnnotationTakeOver("javax.inject.Named"," ${WebFaces.packageName}.ViewScoped")
-public class $output.currentClass {
+$output.dynamicAnnotationTakeOver("javax.inject.Named","javax.faces.view.ViewScoped")
+public class $output.currentClass implements Serializable {
     public static final String HOME_URL = "/home.faces";
 
-    private Logger log = Logger.getLogger(${output.currentClass}.class.getName());
     @Inject
-    private MessageUtil messageUtil;
+    private transient Logger log;
+    @Inject
+    private transient MessageUtil messageUtil;
 
     private String username;
     private String password;

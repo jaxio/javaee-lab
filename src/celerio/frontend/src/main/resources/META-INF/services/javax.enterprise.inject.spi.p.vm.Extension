@@ -1,3 +1,2 @@
 $output.resource("META-INF/services", "javax.enterprise.inject.spi.Extension")##
-${WebFaces.packageName}.ViewContextExtension
 ${WebFaces.packageName}.ConversationContextScopedExtension
