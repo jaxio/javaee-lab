@@ -5,12 +5,11 @@ $output.resource("localization/pages", "home_fr.xml")##
 	<entry key="home_about">A propos</entry>
 	<entry key="home_generated_by"><![CDATA[
 		<p>Cette application a été générée par <a href="http://www.jaxio.com/celerio.html" target="_jaxio">Celerio</a>,
-		un outil de la société <a href="http://www.jaxio.com/" target="_jaxio">Jaxio</a>, basée à Paris, en France.</p>
+		un outil Open Source de la société <a href="http://www.jaxio.com/" target="_jaxio">Jaxio</a>, basée à Paris, en France.</p>
 
-		<p>Les templates de génération utilisées pour générer cette application sont Open Source:</p>
+		<p>Les templates de génération utilisées pour générer cette application sont également Open Source:</p>
 		<ul>
-		    <li>backend: <a href="https://github.com/jaxio/pack-backend-jpa" target="_jaxio">https://github.com/jaxio/pack-backend-jpa</a></li>
-		    <li>frontend: <a href="https://github.com/jaxio/pack-jsf2-spring-conversation" target="_jaxio">https://github.com/jaxio/pack-jsf2-spring-conversation</a></li>
+		    <li>javaee-lab: <a href="https://github.com/jaxio/javaee-lab" target="_jaxio">https://github.com/jaxio/javee-lab</a></li>
         </ul>
 
 		<p>Besoin de support commercial ?
@@ -24,7 +23,7 @@ $output.resource("localization/pages", "home_fr.xml")##
 	<entry key="home_configuration">Configurer la génération</entry>
 	<entry key="home_configuration_howto"><![CDATA[
 		<p>Vous pouvez <a href="http://www.jaxio.com/documentation/celerio/">configurer la génération</a> en utilisant le fichier de configuration celerio-maven-plugin.xml qui se trouve
-		dans le répertoire "$configuration.applicationName/src/main/config/celerio-maven-plugin". Ce fichier vous permet par exemple de:</p>
+		dans le répertoire "src/main/config/celerio-maven-plugin". Ce fichier vous permet par exemple de:</p>
 		<ul>
 			<li>Générer les associations inverses (i.e. one-to-many)</li>
 			<li>Configurer l'héritage JPA</li>
