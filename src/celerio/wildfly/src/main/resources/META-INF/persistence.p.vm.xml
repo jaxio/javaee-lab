@@ -21,8 +21,16 @@ $output.resource("META-INF", "persistence.xml")##
 #end
 
 		<properties>
+			<!-- script related -->
+			<property name="hibernate.hbm2ddl.import_files_sql_extractor" value="org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor" />
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.drop-source" value="script"/>
+			<property name="javax.persistence.schema-generation.create-source" value="script"/>
+			<property name="javax.persistence.schema-generation.drop-script-source" value="01-drop.sql"/>
+			<property name="javax.persistence.schema-generation.create-script-source" value="02-create.sql"/>
+			<property name="javax.persistence.sql-load-script-source" value="03-import.sql"/>
+
 			<!-- Hibernate -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 			<property name="hibernate.show_sql" value="@hibernate.show.sql@" />
 			<property name="hibernate.format_sql" value="@hibernate.format.sql@" />

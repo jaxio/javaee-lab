@@ -436,7 +436,7 @@
                 <filtering>true</filtering>
             </resource>
             <resource>
-                <directory>src/main/sql/h2</directory><!-- we just need the import.sql -->
+                <directory>src/main/sql/h2</directory>
                 <filtering>false</filtering>
             </resource>
         </resources>

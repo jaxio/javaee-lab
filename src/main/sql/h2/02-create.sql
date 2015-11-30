@@ -1,5 +1,3 @@
-DROP ALL OBJECTS;
-
 -- The create script is used to create a database that Celerio can reverse.
 -- On wildfly, hibernate create itself the database in memory (not using this script but by looking at entities...)
 
