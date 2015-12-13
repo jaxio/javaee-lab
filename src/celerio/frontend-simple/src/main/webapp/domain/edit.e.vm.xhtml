@@ -1,0 +1,237 @@
+$output.webapp("$entity.model.subPackagePath", "${entity.model.var}Edit.xhtml")##
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+## =====================================================
+## MACROS
+## =====================================================
+#macro(xToOneEdit $relation)
+		<app:autoComplete id="${relation.to.var}" value="#{${entity.editForm.var}.${relation.to.var}.selected}" label="${relation.labelName}" title="${relation.labelName}" required="$relation.isMandatory()" 
+#if ($relation.toEntity.isIndexed())
+			completeMethod="completeFullText" completeOnProperties="#foreach($indexAttribute in $relation.toEntity.indexedPrinterAttributes.flatUp.list)${indexAttribute.var}$project.print($velocityHasNext, ',', '')#end"
+#end
+			controller="#{${relation.toEntity.controller.var}}" converter="#{${relation.toEntity.webModelConverter.var}}" model="#{${entity.editForm.var}.${relation.to.var}}" permission="#{${relation.toEntity.webPermission.var}}">
+#if($relation.isGenCreate())
+			<app:iconAdd id="add${relation.to.varUp}" />
+#end
+#if($relation.isGenEdit())
+			<app:iconEdit item="#{${entity.editForm.var}.${entity.model.var}.${relation.to.var}}" />
+#end
+#if($relation.isGenView())
+			<app:iconView item="#{${entity.editForm.var}.${entity.model.var}.${relation.to.var}}" />
+#end
+		</app:autoComplete>
+#end
+## =====================================================
+#macro(required $attr)
+#if($attr.isRequired()) required="true"#{end}
+#end
+## =====================================================
+#macro(styleClassRequired $attr)
+#if($attr.isRequired()) styleClass="required-pseudo-label" #{end}
+#end
+## =====================================================
+#macro(unique $attr $tag)
+#if(!$attr.isUnique()) />
+#else>
+			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{${entity.editForm.var}.${attr.entity.model.var}}" property="${attr.name}" />
+		</${tag}>
+#end
+#end
+## =====================================================
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://jaxio.com/app"
+	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
+	<ui:param name="readonly" value="#{'true'.equals(param['readonly'])}" />		
+	<ui:param name="print" value="#{'true'.equals(param['print'])}" />
+<app:edit bean="#{${entity.editForm.var}}" title="#{${entity.editForm.var}.title}">
+	<ui:define name="form">
+#foreach($attribute in $entity.formAttributes.flatUp.list)
+#if ($attribute.isSimplePk() && !$attribute.jpa.isManuallyAssigned())
+## not needed in faces.
+#elseif($attribute.isSimpleFk())
+#xToOneEdit($attribute.getXToOneRelation())
+#elseif(!$attribute.isVersion())
+#if($attribute.isInCpk())
+#set( $valuePath = "${entity.editForm.var}.${entity.model.var}.${identifiableProperty.var}.${attribute.var}")##
+#else
+#set( $valuePath = "${entity.editForm.var}.${entity.model.var}.${attribute.var}")##
+#end
+#if($attribute.springMvc.isPassword())
+		<app:inputPassword id="${attribute.var}" value="#{${valuePath}}" size="${attribute.size}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:inputPassword")
+#elseif($attribute.isHtml())
+		<app:inputEditor id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:inputEditor")
+#elseif($attribute.isTextArea())
+		<app:inputTextArea id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:inputTextArea")
+#elseif($attribute.isEnum())
+#if($attribute.enumConfig.enumValues.size() > 5)
+		<app:selectOneMenu id="${attribute.var}" value="#{${valuePath}}" values="#{${attribute.enumItemsVar}.list}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:selectOneMenu")
+#else
+		<app:selectOneRadio id="${attribute.var}" value="#{${valuePath}}" values="#{${attribute.enumItemsVar}.list}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:selectOneRadio")
+#end
+#elseif($attribute.isString())
+		<app:input id="${attribute.var}" value="#{${valuePath}}" size="${attribute.size}" label="${attribute.labelName}"#required($attribute)#unique($attribute "app:input")
+#elseif($attribute.isDate() && !$attribute.isVersion())
+#if($attribute.isJavaUtilOnlyDate())
+		<app:inputDate id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#elseif($attribute.isJavaUtilDateAndTime())
+		<app:inputDateTime id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#elseif($attribute.isLocalDate())
+		<app:inputLocalDate id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#elseif($attribute.isLocalDateTime())
+		<app:inputLocalDateTime id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#else
+		<h:outputText value="date type not supported!"/><h:outputText value="do it manually and send us the solution!"/>
+#end
+#elseif($attribute.isBoolean())
+		<app:inputBoolean id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#elseif($attribute.isFile())
+		<app:inputFile id="${attribute.var}" label="${attribute.labelName}" object="#{${entity.editForm.var}.${entity.model.var}}"#if($attribute.filename) filename="${attribute.filename.var}"#end
+			fileupload="#{${entity.controller.var}.${entity.fileUpload.getter}(${entity.editForm.var}.${entity.model.var})}" action="on${attribute.varUp}FileUpload"
+			stream="#{${entity.fileDownload.var}.get${attribute.varUp}Stream(${entity.editForm.var}.${entity.model.var})}" #required($attribute)/>
+#else
+		<app:input id="${attribute.var}" value="#{${valuePath}}" label="${attribute.labelName}"#required($attribute) />
+#end
+#end
+##---------- [/NON VERSION]
+#end
+## =====================================================
+## Non Simple X TO ONE
+## =====================================================
+#foreach ($relation in $entity.nonSimpleXToOne.flatUp.list)
+#xToOneEdit($relation)
+#end
+#if($entity.isEntityAudited())
+		<app:audit
+#if($entity.auditEntityAttributes.isCreationAuthorSet())
+			creationAuthor="#{${entity.editForm.var}.${entity.model.var}.${entity.auditEntityAttributes.creationAuthor.var}}"
+#end
+#if($entity.auditEntityAttributes.isCreationDateSet())
+			creationDate="#{${entity.editForm.var}.${entity.model.var}.${entity.auditEntityAttributes.creationDate.var}}"
+#end
+#if($entity.auditEntityAttributes.isLastModificationAuthorSet())
+			lastModificationAuthor="#{${entity.editForm.var}.${entity.model.var}.${entity.auditEntityAttributes.lastModificationAuthor.var}}"
+#end
+#if($entity.auditEntityAttributes.isLastModificationDateSet())
+			lastModificationDate="#{${entity.editForm.var}.${entity.model.var}.${entity.auditEntityAttributes.lastModificationDate.var}}"
+#end
+		/>
+#end
+	</ui:define>
+#if($entity.xToMany.flatUp.size > 0)
+	<ui:define name="tabs">
+#end
+## =====================================================
+## X TO MANY
+## =====================================================
+#foreach ($relation in $entity.xToMany.flatUp.list)
+			<p:tab id="${relation.to.vars}" title="#{msg.${relation.labelName}}" rendered="#{${relation.toEntity.webPermission.var}.canUse() and not (print and ${entity.editForm.var}.${entity.model.var}.${relation.to.vars}.isEmpty())}">
+				<!-- ${relation.to.vars} -->
+				<p:dataTable id="${relation.to.vars}List" var="item" value="#{${entity.editForm.var}.${relation.to.vars}.model}"
+					paginator="#{not print and ${entity.editForm.var}.${entity.model.var}.${relation.to.vars}.size() gt 10}" rows="#{print ? null : 10}"
+					rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom"
+					selection="#{${entity.editForm.var}.${relation.to.vars}.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
+#if($relation.isGenEdit())
+					<p:ajax event="rowSelect" listener="#{${entity.editForm.var}.${relation.to.vars}.onRowSelectEdit}" disabled="#{readonly}" />
+#end
+#if($relation.isGenView())
+					<p:ajax event="rowSelect" listener="#{${entity.editForm.var}.${relation.to.vars}.onRowSelectView}" disabled="#{!readonly}"/>
+#end
+#foreach ($attribute in $relation.toEntity.searchResultAttributes.list)
+#if($attribute.hasXToOneRelation())
+#if ($attribute.xToOneRelation.toEntity != $entity)
+					<p:column id="${attribute.xToOneRelation.labelName}" headerText="#{msg.${attribute.xToOneRelation.labelName}}"#if($attribute.xToOneRelation.toAttribute.isSortable()) sortBy="#{item.${attribute.xToOneRelation.to.var}.${attribute.xToOneRelation.toEntity.xToOneSortAttribute.var}}"#end rendered="#{empty skip${attribute.xToOneRelation.to.varUp}}" styleClass="${attribute.xToOneRelation.to.var}">
+						<h:outputText value="#{printer.print(item.${attribute.xToOneRelation.to.var})}"/>
+					</p:column>
+#end
+#else
+					<p:column id="${attribute.labelName}" headerText="#{msg.${attribute.labelName}}"#if($attribute.isSortable()) sortBy="#{item.${attribute.var}}"#end styleClass="${attribute.var}#if($attribute.isNumeric()) numeric#{end}">
+#if ($attribute.isNumeric())
+#if($attribute.isIntegralNumber())
+						<app:outputInteger value="#{item.${attribute.var}}" />
+#else
+						<app:outputDecimal value="#{item.${attribute.var}}" />
+#end
+#elseif ($attribute.isJavaUtilOnlyDate())
+						<app:outputDate value="#{item.${attribute.var}}" />
+#elseif ($attribute.isJavaUtilOnlyTime())
+						<app:outputTime value="#{item.${attribute.var}}" />
+#elseif ($attribute.isJavaUtilDateAndTime())
+						<app:outputDateTime value="#{item.${attribute.var}}" />
+#elseif ($attribute.isLocalDate())
+						<app:outputLocalDate value="#{item.${attribute.var}}" />
+#elseif ($attribute.isLocalDateTime())
+						<app:outputLocalDateTime value="#{item.${attribute.var}}" />
+#elseif($attribute.isBoolean())
+						<appcc:outputBoolean value="#{item.${attribute.var}}" />
+#elseif($attribute.isFilename())
+						<app:outputFile filename="#{item.${attribute.filename.var}}" stream="#{${relation.toEntity.fileDownload.var}.get${attribute.file.varUp}Stream(item)}" />
+#else
+#if($attribute.isEnum())						
+						<h:outputText value="#{item.${attribute.var}.label}" />
+#else
+						<h:outputText value="#{item.${attribute.var}}" />
+#end
+#end
+					</p:column>
+#end
+#end
+					<p:column id="actions" styleClass="actions-column" resizable="false">
+						<f:facet name="header">
+							<h:panelGroup>
+#if($relation.isManyToMany())
+#if($relation.isGenSelect())
+								<p:autoComplete id="${relation.to.var}Adder" value="#{${entity.editForm.var}.${relation.to.vars}.addElement}"
+									completeMethod="#{${relation.toEntity.controller.var}.complete}"
+									var="item"
+									itemValue="#{item}"
+									itemLabel="#{${relation.toEntity.printer.var}.print(item)}"
+									converter="#{genericJsfConverter}"
+									minQueryLength="2"
+									queryDelay="100"
+									size="30"
+									dropdown="true"
+									rendered="#{not (print or readonly)}">
+									<p:ajax event="itemSelect" update=":form:tabs:${relation.to.vars}List :form:messages"/>
+								</p:autoComplete>
+#end								
+#end
+#if($relation.isGenCreate())
+							<app:iconAdd id="add${relation.to.varUp}" model="#{${entity.editForm.var}.${relation.to.vars}}" title="${relation.labelName}" permission="#{${relation.toEntity.webPermission.var}}"/>
+#end
+                             </h:panelGroup>
+						</f:facet>
+#if($relation.isGenView())
+						<app:iconView model="#{${entity.editForm.var}.${relation.to.vars}}" item="#{item}" permission="#{${relation.toEntity.webPermission.var}}">
+							<f:setPropertyActionListener value="#{item}" target="#{${entity.editForm.var}.${relation.to.vars}.model.selectedRow}" />
+						</app:iconView>
+#end
+#if($relation.isGenEdit())
+						<app:iconEdit model="#{${entity.editForm.var}.${relation.to.vars}}" item="#{item}" permission="#{${relation.toEntity.webPermission.var}}">
+							<f:setPropertyActionListener value="#{item}" target="#{${entity.editForm.var}.${relation.to.vars}.model.selectedRow}" />
+						</app:iconEdit>
+#end
+#if($relation.isGenRemove())
+						<app:iconRemove dialogWidgetVar="askForRemove${relation.to.varUp}Dialog" item="#{item}" permission="#{${relation.toEntity.webPermission.var}}">
+							<f:setPropertyActionListener value="#{item}" target="#{${entity.editForm.var}.${relation.to.vars}.model.selectedRow}" />
+						</app:iconRemove>
+#end						
+					</p:column>					
+				</p:dataTable>
+			</p:tab>
+#end
+#if($entity.xToMany.flatUp.size > 0)
+	</ui:define>
+	<ui:define name="custom-dialogs">
+#foreach ($relation in $entity.xToMany.flatUp.list)
+#if($relation.isGenRemove())
+		<app:confirmToManyRemoveDialog widgetVar="askForRemove${relation.to.varUp}Dialog" toManyAction="#{${entity.editForm.var}.${relation.to.vars}}" update=":form:tabs:${relation.to.vars}List :form:messages" />
+#end
+#end
+	</ui:define>
+#end
+</app:edit>
+</ui:composition>

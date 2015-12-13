@@ -34,7 +34,16 @@ $output.dynamicAnnotationTakeOver("javax.ejb.Singleton","javax.inject.Named")##
 public ${output.abstractSpace} class $output.currentClass extends GenericRepository<$entity.model.type, $entity.root.primaryKey.type> {
 
     public ${output.currentClass}() {
-        super(${entity.model.type}.class);
+#if($entity.root.primaryKey.isSimple())
+#if($entity.root.primaryKey.type == "Integer" || $entity.root.primaryKey.type == "Long")
+        super(${entity.model.type}.class, ${entity.root.primaryKey.type}::valueOf);
+#elseif($entity.root.primaryKey.type == "String")
+        super(${entity.model.type}.class,);
+
+#end
+#else
+        super(${entity.model.type}.class, ${entity.root.primaryKey.type}::fromString);
+#end
     }
 
     @Override

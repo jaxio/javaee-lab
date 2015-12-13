@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:app="http://jaxio.com/app">
+	<app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{(empty rendered or rendered)}" />
+	<p:selectOneRadio id="#{id}" value="#{value}" label="#{resourcesUtil.getProperty(label)}" rendered="#{(empty rendered or rendered) and not readonly}" disabled="#{empty disabled ? false : disabled}"
+		layout="#{empty layout ? (values.size() lt 4 ? 'lineDirection' : 'pageDirection') : layout}">
+		<f:selectItems value="#{values}" />
+		<c:if test="#{not empty nullAllowed and nullAllowed}">
+			<f:selectItem itemLabel="#{msg.null_value}" itemValue="#{null}" />
+		</c:if>
+		<f:validateBean binding="#{lenientBeanValidator}" />
+		<ui:insert/>
+	</p:selectOneRadio>
+	<h:outputText value="#{value}" rendered="#{readonly}" disabled="#{empty disabled ? false : disabled}"/>
+</ui:composition>

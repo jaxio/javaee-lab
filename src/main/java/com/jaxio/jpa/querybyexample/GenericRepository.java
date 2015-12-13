@@ -31,6 +31,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -62,6 +63,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     @Inject
     protected EntityManager entityManager;
     protected Class<E> type;
+    protected Function<String, PK> stringToPkFunction;
 
     protected Logger log = Logger.getLogger(GenericRepository.class.getName());
 
@@ -71,11 +73,22 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         // required no-args construct to make this bean is proxyable
     }
 
+
     /*
      * This constructor needs the real type of the generic type E so it can be given to the {@link javax.persistence.EntityManager}.
      */
     public GenericRepository(Class<E> type) {
         this.type = type;
+        this.stringToPkFunction = null;
+        this.cacheRegion = type.getCanonicalName();
+    }
+
+    /*
+     * This constructor needs the real type of the generic type E so it can be given to the {@link javax.persistence.EntityManager}.
+     */
+    public GenericRepository(Class<E> type, Function<String, PK> stringToPkFunction) {
+        this.type = type;
+        this.stringToPkFunction = stringToPkFunction;
         this.cacheRegion = type.getCanonicalName();
     }
 
@@ -116,6 +129,10 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      */
     public E get(E entity) {
         return entity == null ? null : getById(entity.getId());
+    }
+
+    public PK convertToPrimaryKey(String pkAsString) {
+        return stringToPkFunction == null ? (PK) pkAsString : stringToPkFunction.apply(pkAsString);
     }
 
     public E getById(PK pk) {

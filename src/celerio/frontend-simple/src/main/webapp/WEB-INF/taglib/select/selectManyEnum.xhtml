@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:app="http://jaxio.com/app">
+	<app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{rendered}" />
+	<p:selectManyCheckbox id="#{id}" value="#{value.selected}" rendered="#{empty rendered ? true : rendered}" disabled="#{empty disabled ? false : disabled}"
+		layout="#{items.list.size() lt 5 ? 'lineDirection' : 'pageDirection'}"
+		converter="#{genericJsfConverter}">
+		<f:selectItems value="#{items.list}" />
+		<c:if test="#{not empty nullAllowed and nullAllowed}">
+			<f:selectItem itemLabel="#{msg.null_value}" itemValue="#{null}" />
+		</c:if>
+		<ui:insert/>
+	</p:selectManyCheckbox>
+</ui:composition>

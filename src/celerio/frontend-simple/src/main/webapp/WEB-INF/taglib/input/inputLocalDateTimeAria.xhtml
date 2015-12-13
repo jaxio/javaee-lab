@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:app="http://jaxio.com/app"
+	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
+	<app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{rendered}" />
+	<h:panelGroup rendered="#{(empty readonly or not readonly) and (empty rendered or rendered)}">
+		<appcc:datePicker id="#{id}" label="#{resourcesUtil.getProperty(label)}" value="#{value}" timeRendered="true" converter="#{localDateTimeConverter}">
+			<f:validateBean binding="#{lenientBeanValidator}"/>
+			<ui:insert/>
+		</appcc:datePicker>
+		<p:tooltip for="#{id}" value="#{tooltip}" showEffect="slide" rendered="#{not empty tooltip}"/>
+	</h:panelGroup>
+	<h:outputText value="#{value}" rendered="#{readonly and (empty rendered or rendered)}" converter="#{localDateTimeConverter}" />
+</ui:composition>

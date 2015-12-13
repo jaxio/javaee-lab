@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://jaxio.com/app"
+	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
+	<c:if test="#{creationAuthor ne null or creationDate ne null or lastModificationAuthor ne null or lastModificationDate ne null}">
+		<app:outputLabel for="audit" value="audit" rendered="#{rendered}" />
+		<h:panelGrid id="audit" rendered="#{empty rendered ? true : rendered}">
+			<h:outputText value="#{msg.creation_author} #{creationAuthor}" rendered="#{not empty creationAuthor}" />
+			<h:outputText value="#{msg.creation_date} #{creationDate}" rendered="#{not empty creationDate}" />
+			<h:outputText value="#{msg.last_modification_author} #{lastModificationAuthor}" rendered="#{not empty lastModificationAuthor}" />
+			<h:outputText value="#{msg.last_modification_date} #{lastModificationDate}" rendered="#{not empty lastModificationDate}" />
+		</h:panelGrid>
+	</c:if>
+</ui:composition>

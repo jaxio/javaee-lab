@@ -1,6 +1,8 @@
 -- The create script is used to create a database that Celerio can reverse.
 -- On wildfly, hibernate create itself the database in memory (not using this script but by looking at entities...)
 
+CREATE SEQUENCE HIBERNATE_SEQUENCE START WITH 0;
+
 CREATE TABLE USER (
     id                       int not null IDENTITY,
     login                    varchar(100) not null,

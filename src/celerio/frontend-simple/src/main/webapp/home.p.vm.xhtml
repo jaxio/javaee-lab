@@ -1,0 +1,72 @@
+$output.webapp("home.xhtml")##
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:app="http://jaxio.com/app"
+	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components"
+	template="/WEB-INF/layouts/main.xhtml">
+	<ui:define name="content">
+#if($brandUtil.isJaxio())
+		<p:panel header="#{msg.home_about}">
+			<h:outputText value="#{msg.home_generated_by}" escape="false"/>
+		</p:panel>
+#end
+		<p:panel header="#{msg.welcome}">
+			<p>
+				<h:outputFormat value="#{msg.you_are_connected_to}" rendered="#{userContextService.isLoggedIn()}">
+					<f:param value="#{userContextService.username}"/>
+					<f:param value="#{msg.application_name}"/>
+				</h:outputFormat>
+				<p:outputPanel rendered="#{userContextService.isAnonymousUser()}">
+					<h:outputLink value="login.faces">#{msg.home_please_connect_first}</h:outputLink>
+				</p:outputPanel>
+			</p>
+			<!-- give focus to first link to ease keyboard navigation -->
+			<script type="text/javascript">
+				$(function() {
+					setTimeout(function() {
+						APP.focusTo('form:logo_link');
+					}, 200);
+				});
+			</script>
+		</p:panel>
+
+		<p:panel header="#{msg.home_start_conversation}">
+			<p>#{msg.home_conversation}</p>
+			<ul>
+#foreach ($entity in $project.withoutManyToManyJoinEntities.list)
+#if ($entity.isRoot())
+				<li>
+					<h:outputText value="#{msg.${entity.labelName}} " />
+					<h:commandLink id="select${entity.model.varsUp}" action="#{${entity.controller.var}.select()}" rendered="#{${entity.webPermission.var}.canSearch()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_search}"/>
+					</h:commandLink>
+					<h:outputText value=" " />
+					<h:commandLink id="new${entity.model.varsUp}" action="#{${entity.controller.var}.create()}" rendered="#{${entity.webPermission.var}.canCreate()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_create}"/>
+					</h:commandLink>
+				</li>
+#foreach($child in $entity.allChildrenRecursive)
+				<li>
+					<h:outputText value="#{msg.${child.labelName}} " />
+					<h:commandLink id="select${child.model.varsUp}" action="#{${child.controller.var}.select()}" rendered="#{${entity.webPermission.var}.canSearch()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_search}"/>
+					</h:commandLink>
+					<h:outputText value=" " />
+					<h:commandLink id="new${child.model.varsUp}" action="#{${child.controller.var}.create()}"  rendered="#{${entity.webPermission.var}.canCreate()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_create}"/>
+					</h:commandLink>
+				</li>
+#end
+#end
+#end
+			</ul>
+		</p:panel>
+		<p:panel header="#{msg.home_configuration}">
+			<h:outputText value="#{msg.home_configuration_howto}" escape="false" />
+		</p:panel>
+	</ui:define>
+</ui:composition>

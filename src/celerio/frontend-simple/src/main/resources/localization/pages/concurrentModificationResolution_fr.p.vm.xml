@@ -1,0 +1,19 @@
+$output.resource("localization/pages/", "concurrentModificationResolution_fr.xml")##
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>concurrentModificationResolution</comment>
+	<entry key="concurrentModificationResolution_title">Conflit détecté</entry>
+	<entry key="concurrentModificationResolution_conflict">Conflit détecté</entry>
+	<entry key="concurrentModificationResolution_description"><![CDATA[
+		<p>
+			Nous avons détecté une modification concurrente (optimistic locking).<br/>
+			Vous pouvez soit :
+			<ul>
+				<li>rafraichir avec les dernieres données de la base. Vous perdrez alors une partie de vos modifications.</li>
+				<li>terminer la conversation en cours et perdre l'ensemble de vos changements.</li>
+			</ul>
+		</p>
+	]]></entry>
+	<entry key="concurrentModificationResolution_refresh">Rafraîchir</entry>
+	<entry key="concurrentModificationResolution_discard">Annuler</entry>
+</properties>

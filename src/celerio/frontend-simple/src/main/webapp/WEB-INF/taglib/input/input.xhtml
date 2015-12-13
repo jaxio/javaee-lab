@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:app="http://jaxio.com/app">
+	<app:outputLabel for="#{id}" value="#{label}" required="#{required}" rendered="#{rendered}" styleClass="#{styleClass}" />
+	<h:panelGroup rendered="#{(empty readonly or not readonly) and (empty rendered or rendered)}">
+		<p:inputText id="#{id}" label="#{resourcesUtil.getProperty(label)}" value="#{value}" 
+			size="#{empty size ? 50 : (size lt 50 ? size : 50)}" 			
+			maxlength="#{not empty maxlength ? maxlength : (not empty size ? size : 50)}" 
+			styleClass="#{styleClass}">
+			<f:validateBean binding="#{lenientBeanValidator}"/>
+			<ui:insert/>
+		</p:inputText>
+		<p:tooltip for="#{id}" value="#{tooltip}" showEffect="slide" rendered="#{not empty tooltip}"/>
+	</h:panelGroup>
+	<h:outputText value="#{value}" rendered="#{readonly and (empty rendered or rendered)}" />
+</ui:composition>

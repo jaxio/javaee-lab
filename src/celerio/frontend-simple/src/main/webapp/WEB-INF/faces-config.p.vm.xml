@@ -1,0 +1,26 @@
+$output.webinf("faces-config.xml")##
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    <application>
+		<locale-config>
+			<supported-locale>en</supported-locale>
+			<supported-locale>fr</supported-locale>
+		</locale-config>
+     <message-bundle>${WebUtil.packageName}.MessageBundle</message-bundle>
+		<resource-bundle>
+			<base-name>${WebUtil.packageName}.MessageBundle</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	<factory>
+	    <exception-handler-factory>${WebFaces.packageName}.CustomExceptionHandlerFactory</exception-handler-factory>
+	</factory>	
+	<lifecycle>
+        <phase-listener>${WebFaces.packageName}.LocaleSetterListener</phase-listener>
+		<phase-listener>${WebFaces.packageName}.LogPhaseListener</phase-listener>
+		<phase-listener>${WebFaces.packageName}.MultiPageMessagesListener</phase-listener>    
+        <phase-listener>${WebFaces.packageName}.ExceptionInRenderPhaseListener</phase-listener>    
+	</lifecycle>
+</faces-config>
