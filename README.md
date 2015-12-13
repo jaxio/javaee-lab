@@ -13,6 +13,9 @@ The code generation is done by [Celerio](http://www.jaxio.com/en/).
 
 The project uses its own code generation templates, see [src/main/celerio](https://github.com/jaxio/javaee-lab/tree/master/src/celerio).
 
+You may edit the file [celerio-template-packs.xml](https://github.com/jaxio/javaee-lab/tree/master/src/main/config/celerio-maven-plugin/celerio-template-packs.xml) 
+to choose between a conversation-based front end and a simpler front-end version. By default, the conversation-based front-end is enabled.
+ 
 The generated application runs on WildFly 10, it is a pure Java EE 7 application, it relies on:
 
 * JPA with Hibernate
@@ -24,7 +27,8 @@ The generated application runs on WildFly 10, it is a pure Java EE 7 application
 It also relies on house-made solutions for:
 
 * query by example
-* JSF conversation
+* JSF conversation (depending on if you choose this front-end version or not)
+
 
 # Requirements
 
