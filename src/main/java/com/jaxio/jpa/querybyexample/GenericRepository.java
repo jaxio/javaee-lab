@@ -28,6 +28,7 @@ import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -127,6 +128,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param entity an E instance having a primary key set
      * @return the corresponding E persistent instance or null if none could be found.
      */
+    @Transactional
     public E get(E entity) {
         return entity == null ? null : getById(entity.getId());
     }
@@ -135,6 +137,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         return stringToPkFunction == null ? (PK) pkAsString : stringToPkFunction.apply(pkAsString);
     }
 
+    @Transactional
     public E getById(PK pk) {
         if (pk == null) {
             return null;
@@ -152,6 +155,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      *
      * @param entity the entity to refresh.
      */
+    @Transactional
     public void refresh(E entity) {
         if (entityManager.contains(entity)) {
             entityManager.refresh(entity);
@@ -161,6 +165,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     /*
      * Find and load all instances.
      */
+    @Transactional
     public List<E> find() {
         return find(getNew(), new SearchParameters());
     }
@@ -171,6 +176,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param e a sample entity whose non-null properties may be used as search hints
      * @return the entities matching the search.
      */
+    @Transactional
     public List<E> find(E e) {
         return find(e, new SearchParameters());
     }
@@ -181,6 +187,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param searchParameters carries additional search information
      * @return the entities matching the search.
      */
+    @Transactional
     public List<E> find(SearchParameters searchParameters) {
         return find(getNew(), searchParameters);
     }
@@ -192,6 +199,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param sp     carries additional search information
      * @return the entities matching the search.
      */
+    @Transactional
     public List<E> find(E entity, SearchParameters sp) {
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.findByNamedQuery(sp);
@@ -233,6 +241,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param path         the path to the property
      * @return the entities property matching the search.
      */
+    @Transactional
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, String path) {
         return findProperty(propertyType, entity, sp, metamodelUtil.toAttributes(path, type));
     }
@@ -246,6 +255,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param attributes   the list of attributes to the property
      * @return the entities property matching the search.
      */
+    @Transactional
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, Attribute<?, ?>... attributes) {
         return findProperty(propertyType, entity, sp, newArrayList(attributes));
     }
@@ -259,6 +269,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param attributes   the list of attributes to the property
      * @return the entities property matching the search.
      */
+    @Transactional
     public <T> List<T> findProperty(Class<T> propertyType, E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.findByNamedQuery(sp);
@@ -300,6 +311,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param sp carries additional search information
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findCount(SearchParameters sp) {
         return findCount(getNew(), sp);
     }
@@ -310,6 +322,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param entity a sample entity whose non-null properties may be used as search hint
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findCount(E entity) {
         return findCount(entity, new SearchParameters());
     }
@@ -321,6 +334,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param sp     carries additional search information
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findCount(E entity, SearchParameters sp) {
         checkNotNull(entity, "The entity cannot be null");
         checkNotNull(sp, "The searchParameters cannot be null");
@@ -362,6 +376,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param path   the path to the property
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findPropertyCount(E entity, SearchParameters sp, String path) {
         return findPropertyCount(entity, sp, metamodelUtil.toAttributes(path, type));
     }
@@ -374,6 +389,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param attributes the list of attributes to the property
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findPropertyCount(E entity, SearchParameters sp, Attribute<?, ?>... attributes) {
         return findPropertyCount(entity, sp, newArrayList(attributes));
     }
@@ -386,6 +402,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param attributes the list of attributes to the property
      * @return the number of entities matching the search.
      */
+    @Transactional
     public int findPropertyCount(E entity, SearchParameters sp, List<Attribute<?, ?>> attributes) {
         if (sp.hasNamedQuery()) {
             return byNamedQueryUtil.numberByNamedQuery(sp).intValue();
@@ -416,10 +433,12 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         return typedQuery.getSingleResult().intValue();
     }
 
+    @Transactional
     public E findUnique(SearchParameters sp) {
         return findUnique(getNew(), sp);
     }
 
+    @Transactional
     public E findUnique(E e) {
         return findUnique(e, new SearchParameters());
     }
@@ -432,10 +451,12 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         throw new NoResultException("Developper: You expected 1 result but found none !");
     }
 
+    @Transactional
     public E findUniqueOrNone(SearchParameters sp) {
         return findUniqueOrNone(getNew(), sp);
     }
 
+    @Transactional
     public E findUniqueOrNone(E entity) {
         return findUniqueOrNone(entity, new SearchParameters());
     }
@@ -445,6 +466,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      *
      * @throws javax.persistence.NonUniqueResultException
      */
+    @Transactional
     public E findUniqueOrNone(E entity, SearchParameters sp) {
         // this code is an optimization to prevent using a count
         sp.setFirst(0);
@@ -460,14 +482,17 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         }
     }
 
+    @Transactional
     public E findUniqueOrNew(SearchParameters sp) {
         return findUniqueOrNew(getNew(), sp);
     }
 
+    @Transactional
     public E findUniqueOrNew(E e) {
         return findUniqueOrNew(e, new SearchParameters());
     }
 
+    @Transactional
     public E findUniqueOrNew(E entity, SearchParameters sp) {
         E result = findUniqueOrNone(entity, sp);
         if (result != null) {
@@ -525,6 +550,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      *
      * @param entity the entity to be saved or updated.
      */
+    @Transactional
     public void save(E entity) {
         checkNotNull(entity, "The entity to save cannot be null");
 
@@ -547,6 +573,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     /*
      * Persist the given entity.
      */
+    @Transactional
     public void persist(E entity) {
         entityManager.persist(entity);
     }
@@ -554,6 +581,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     /*
      * Merge the state of the given entity into the current persistence context.
      */
+    @Transactional
     public E merge(E entity) {
         System.out.println("merge: " + entity.entityClassName() + ": " +entity + ": " + entity.getId());
         return entityManager.merge(entity);
@@ -562,6 +590,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
     /**
      * Detach the passed entity.
      */
+    @Transactional
     public void detach(E entity) {
         entityManager.detach(entity);
     }
@@ -571,6 +600,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      *
      * @param entity the entity to be deleted.
      */
+    @Transactional
     public void delete(E entity) {
         if (entityManager.contains(entity)) {
             entityManager.remove(entity);
@@ -610,6 +640,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * @param id       the entity id
      * @param property the property to check
      */
+    @Transactional
     public boolean isPropertyNull(PK id, SingularAttribute<E, ?> property) {
         checkNotNull(id, "The id cannot be null");
         checkNotNull(property, "The property cannot be null");
@@ -631,6 +662,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
      * Return the optimistic version value, if any.
      */
     @SuppressWarnings("unchecked")
+    @Transactional
     public Comparable<Object> getVersion(E entity) {
         EntityType<E> entityType = entityManager.getMetamodel().entity(type);
         if (!entityType.hasVersionAttribute()) {

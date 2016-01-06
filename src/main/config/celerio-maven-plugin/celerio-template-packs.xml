@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://www.jaxio.com/schema/celerio ./celerio.xsd">
     <configuration>
         <packs>
-            <pack name="pack-javaee-jpa" path="src/celerio/backend" enable="true"/>
-            <pack name="pack-javaee-jsf-conversation" path="src/celerio/frontend-conversation" enable="true"/>
+            <pack name="pack-javaee7-backend" path="pack-javaee7-backend/src/main/resources" enable="true"/>
+            <pack name="pack-javaee7-frontend-conversation" path="pack-javaee7-frontend-conversation/src/main/resources" enable="false"/>
             <!-- you may enable this pack instead of the previous one if you prefer a conversation-less approach -->
-            <pack name="pack-javaee-jsf-simple" path="src/celerio/frontend-simple" enable="false"/>
-            <pack name="pack-javaee-wildfly" path="src/celerio/wildfly" enable="true"/>
+            <pack name="pack-javaee7-frontend" path="pack-javaee7-frontend/src/main/resources" enable="true"/>
+            <pack name="pack-javaee7-wildfly" path="pack-javaee7-wildfly/src/main/resources" enable="true"/>
         </packs>
     </configuration>
 </celerio>

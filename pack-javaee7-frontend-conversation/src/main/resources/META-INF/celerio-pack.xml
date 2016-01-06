@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<celerioPack xmlns="http://www.jaxio.com/schema/celerio">
+    <packName value="pack-javaee7-frontend-conversation"/>
+    <packVersion value="1.0.0-SNAPSHOT"/>
+    <packDescription value="JSF Front End for Java EE 7 with conversation"/>
+    <packDescription2 value="Generates controller, pages, etc."/>
+    <packCommand value="mvn -Pdb,metadata,gen test"/>
+    <packCommandHelp value=""/>
+    <projectLink value="https://github.com/jaxio/javaee-lab"/>
+    <!-- no context for now
+    <celerioTemplateContext>
+        <entityContextProperties>
+            <entityContextProperty property="rest" subPackage="rest" suffix="Resource"/>
+        </entityContextProperties>
+    </celerioTemplateContext>
+    -->
+</celerioPack>

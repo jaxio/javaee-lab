@@ -30,7 +30,7 @@ $output.require($enumAttribute)##
 /**
  * {@link GenericRepository} for {@link $entity.model.type} 
  */
-$output.dynamicAnnotationTakeOver("javax.ejb.Singleton","javax.inject.Named")##
+$output.dynamicAnnotationTakeOver("javax.enterprise.context.ApplicationScoped","javax.inject.Named")##
 public ${output.abstractSpace} class $output.currentClass extends GenericRepository<$entity.model.type, $entity.root.primaryKey.type> {
 
     public ${output.currentClass}() {
@@ -71,6 +71,7 @@ public ${output.abstractSpace} class $output.currentClass extends GenericReposit
      * @param $uniqueAttribute.var the unique value
      * @return the corresponding {@link $entity.model.type} persistent instance or null
      */
+    $output.dynamicAnnotation("javax.transaction.Transactional")
     public $entity.model.type ${uniqueAttribute.uniqueGetter}($uniqueAttribute.type ${uniqueAttribute.var}) {
 #if($uniqueAttribute.isInCpk())
     $entity.model.type $entity.model.var = new ${entity.model.type}();
@@ -86,6 +87,7 @@ public ${output.abstractSpace} class $output.currentClass extends GenericReposit
      *
      * @param $uniqueAttribute.var the unique value
      */
+    $output.dynamicAnnotation("javax.transaction.Transactional")
     public void ${uniqueAttribute.uniqueDeleter}($uniqueAttribute.type $uniqueAttribute.var) {
         delete(${uniqueAttribute.uniqueGetter}($uniqueAttribute.var));
     }
