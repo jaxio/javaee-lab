@@ -1,20 +1,28 @@
-# Full Java EE 7 app sample
+# Java EE 7 Celerio Templates + Demo
 
 >>
 >> NOTE: This is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
->> 
+>>
 
-Reverse a [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
+For the demo, [Celerio, a code generator](http://www.jaxio.com/en/), reverses this
+[sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
 and generate a full S-CRUD Java EE 7 web application.
 
 S-CRUD means: **S**earch, **C**reate, **R**ead, **U**pdate, **D**elete
 
-The code generation is done by [Celerio](http://www.jaxio.com/en/).
+The code generation templates that Celerio interprets to generate the demo web application are present in the following folder:
 
-The project uses its own code generation templates, see [src/main/celerio](https://github.com/jaxio/javaee-lab/tree/master/src/celerio).
+* [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend).
+* [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend).
+* [pack-javaee7-frontend-conversation](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend-conversation) - disabled by default
+* [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly).
 
-You may edit the file [celerio-template-packs.xml](https://github.com/jaxio/javaee-lab/tree/master/src/main/config/celerio-maven-plugin/celerio-template-packs.xml) 
-to choose between a **conversation-based front end or a simpler front end version**. By default, the conversation-based front end is enabled.
+You may edit the file [celerio-template-packs.xml](https://github.com/jaxio/javaee-lab/tree/master/demo/src/main/config/celerio-maven-plugin/celerio-template-packs.xml) 
+to choose between a **conversation-based front end or a simpler front end version**. By default, the simpler front end is enabled.
+
+The generated application depends on the following library, which for convenience is part of the JavaEE Lab github project.
+
+* [javaee7-jpa-query-by-example](https://github.com/jaxio/javaee-lab/tree/master/javaee7-jpa-query-by-example).
  
 The generated application runs on WildFly 10, it is a pure Java EE 7 application, it relies on:
 
@@ -24,11 +32,9 @@ The generated application runs on WildFly 10, it is a pure Java EE 7 application
 * Primefaces 5.3 / Omnifaces 2.1
 * Shiro for authentication
 
-It also relies on house-made solutions for:
+It also relies on house-made solution for:
 
-* query by example
 * JSF conversation (depending on if you choose this front-end version or not)
-
 
 # Requirements
 
@@ -38,6 +44,11 @@ It also relies on house-made solutions for:
 
 # How to run it
 
+## Step 0: build the JPA query by example lib
+
+    cd javaee7-jpa-query-by-example
+    mvn clean install
+
 ## Step 1: start WildFly
 
 From wildfly distribution root folder, run:
@@ -46,11 +57,14 @@ From wildfly distribution root folder, run:
     
 ## Step 2: reverse the sample SQL schema and generate the source code
     
-From this folder run from:
+From this folder run:
 
+    cd demo
     mvn -Pdb,metadata,gen generate-sources
 
 ## Step 3: deploy on WildFly
+
+From the demo folder:
 
     mvn wildfly:undeploy  <== if you deployed previously, undeploy it first
 
@@ -61,6 +75,8 @@ From this folder run from:
     http://localhost:8080/demo
 
 ## Extra tip: delete generated code
+
+From the demo folder:
 
     mvn -PcleanGen clean
 
