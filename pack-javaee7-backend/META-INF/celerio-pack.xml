@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <celerioPack xmlns="http://www.jaxio.com/schema/celerio">
-    <packName value="pack-javaee7-wildfly"/>
-    <packVersion value="1.0.0-SNAPSHOT"/>
-    <packDescription value="WildFly conf"/>
-    <packDescription2 value="Generates WildFly specific conf"/>
+    <packName value="pack-javaee7-backend"/>
+    <packDescription value="Backend only: Java EE 7 with Hibernate and Lucene"/>
+    <packDescription2 value="Generates entities, meta model and repositories. Used by front-end packs."/>
     <packCommand value="mvn -Pdb,metadata,gen test"/>
     <packCommandHelp value=""/>
     <projectLink value="https://github.com/jaxio/javaee-lab"/>

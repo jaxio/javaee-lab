@@ -2,11 +2,11 @@
 .idea/
 *.iml
 *.class
-src/main/config/celerio-maven-plugin/metadata.xml
-src/main/generated-java
-src/main/resources
-src/main/webapp
-src/test/generated-java
+demo/src/main/config/celerio-maven-plugin/metadata.xml
+demo/src/main/generated-java
+demo/src/main/resources
+demo/src/main/webapp
+demo/src/test/generated-java
 target/
 
 # Mobile Tools for Java (J2ME)

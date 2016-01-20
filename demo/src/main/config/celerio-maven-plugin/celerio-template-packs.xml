@@ -1,0 +1,12 @@
+<celerio xmlns="http://www.jaxio.com/schema/celerio" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.jaxio.com/schema/celerio ./celerio.xsd">
+    <configuration>
+        <packs>
+            <pack name="pack-javaee7-backend" path="../pack-javaee7-backend" enable="true"/>
+            <pack name="pack-javaee7-frontend-conversation" path="../pack-javaee7-frontend-conversation" enable="false"/>
+            <!-- you may enable this pack instead of the previous one if you prefer a conversation-less approach -->
+            <pack name="pack-javaee7-frontend" path="../pack-javaee7-frontend" enable="true"/>
+            <pack name="pack-javaee7-wildfly" path="../pack-javaee7-wildfly" enable="true"/>
+        </packs>
+    </configuration>
+</celerio>
