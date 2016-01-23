@@ -57,7 +57,7 @@ public abstract class EntityGraphLoader<T extends Identifiable<PK>, PK extends S
         }
     }
 
-    /**
+    /*
      * Merge the passed entity in order to attach it to the current persistent context,
      * then load its graph. Once done, detach it and rollback the transaction to avoid the propagation
      * to the database of any pending modification. This could be considered as a _HACK_ but it does the job.

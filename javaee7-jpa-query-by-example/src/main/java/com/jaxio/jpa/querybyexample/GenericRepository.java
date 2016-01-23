@@ -587,7 +587,7 @@ public abstract class GenericRepository<E extends Identifiable<PK>, PK extends S
         return entityManager.merge(entity);
     }
 
-    /**
+    /*
      * Detach the passed entity.
      */
     @Transactional
