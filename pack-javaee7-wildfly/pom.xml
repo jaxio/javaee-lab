@@ -10,7 +10,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>celerio pack-javaee7-frontend</name>
+    <name>celerio pack-javaee7-wildfly</name>
     <url>https://github.com/jaxio/javaee-lab</url>
     <description>The Celerio Generation Template Pack "JavaEE7 WildFly" contains a set of source code file templates that
         are interpreted by Celerio code generator in order to generate a full JavaEE 7 application with a

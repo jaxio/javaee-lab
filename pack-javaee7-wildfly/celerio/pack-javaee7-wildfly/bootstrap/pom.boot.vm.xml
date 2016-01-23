@@ -122,7 +122,7 @@ $output.file("pom.xml")##
         <dependency>
             <groupId>com.jaxio</groupId>
             <artifactId>javaee7-jpa-query-by-example</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency> <!-- only here to prevent wildfly warn: HHH000431: Unable to determine H2 database version, certain features may not work -->
@@ -593,17 +593,17 @@ $output.file("pom.xml")##
                             <dependency>
                                 <groupId>com.jaxio.celerio.packs</groupId>
                                 <artifactId>pack-javaee7-backend</artifactId>
-                                <version>1.0.0-SNAPSHOT</version>
+                                <version>1.0.0</version>
                             </dependency>
                             <dependency>
                                 <groupId>com.jaxio.celerio.packs</groupId>
                                 <artifactId>pack-javaee7-frontend</artifactId>
-                                <version>1.0.0-SNAPSHOT</version>
+                                <version>1.0.0</version>
                             </dependency>
                             <dependency>
                                 <groupId>com.jaxio.celerio.packs</groupId>
                                 <artifactId>pack-javaee7-wildfly</artifactId>
-                                <version>1.0.0-SNAPSHOT</version>
+                                <version>1.0.0</version>
                             </dependency>
                         </dependencies>
                     </plugin>
