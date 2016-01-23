@@ -8,7 +8,7 @@
     <groupId>com.jaxio</groupId>
     <artifactId>javaee7-jpa-query-by-example</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>JavaEE7 JPA Query by Example</name>
     <url>https://github.com/jaxio/javaee-lab</url>
 
@@ -49,7 +49,7 @@
         <connection>scm:git:git://github.com/jaxio/javaee-lab.git</connection>
         <developerConnection>scm:git:git@github.com:jaxio/javaee-lab.git</developerConnection>
         <url>http://github.com/jaxio/javaee-lab/</url>
-        <tag>javaee7-jpa-query-by-example-1.0.0</tag>
+        <tag>javaee7-jpa-query-by-example-1.0.1</tag>
     </scm>
 
     <issueManagement>
