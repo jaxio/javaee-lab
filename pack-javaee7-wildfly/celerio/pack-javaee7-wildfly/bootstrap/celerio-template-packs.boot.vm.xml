@@ -1,0 +1,11 @@
+$output.file("src/main/config/celerio-maven-plugin/celerio-template-packs.xml")##
+<celerio xmlns="http://www.jaxio.com/schema/celerio" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.jaxio.com/schema/celerio ./celerio.xsd">
+	<configuration>
+		<!-- These packs are expected to be present in your classpath as jar dependencies -->
+		<packs>
+			<pack name="pack-javaee7-backend" enable="true"/>
+			<pack name="pack-javaee7-frontend" enable="true"/>
+			<pack name="pack-javaee7-wildfly" enable="true"/>
+		</packs>
+	</configuration>
+</celerio>

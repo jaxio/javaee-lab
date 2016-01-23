@@ -30,7 +30,7 @@ INSERT INTO ADDRESS (id, street, zip_code, city, country, version) VALUES (-6, '
 
 INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-1, 'Tresor Public', -1, 1);
 INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-2, 'BNP Paribas', -2, 1);
-INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-3, 'Societe Generale', -3, 1);
+INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-3, 'Société Générale', -3, 1);
 INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-4, 'Federal Reserve bank of New York', -4, 1);
 INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-5, 'Algeria central bank', -5, 1);
 INSERT INTO CUSTOMER (id, company_name, address_id, version) VALUES (-6, 'DO Budget', -6, 1);

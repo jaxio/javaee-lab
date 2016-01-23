@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <celerioPack xmlns="http://www.jaxio.com/schema/celerio">
     <packName value="pack-javaee7-frontend"/>
-    <packDescription value="JSF Front End for Java EE 7"/>
-    <packDescription2 value="Generates controller, pages, etc."/>
+    <packDescription value="JavaEE 7 front end relying on JSF and PrimeFaces"/>
+    <packDescription2 value="Generates controllers, pages, etc."/>
     <packCommand value="mvn -Pdb,metadata,gen test"/>
     <packCommandHelp value=""/>
     <projectLink value="https://github.com/jaxio/javaee-lab"/>

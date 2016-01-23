@@ -17,6 +17,6 @@
         <module>pack-javaee7-backend</module>
         <module>pack-javaee7-frontend</module>
         <module>pack-javaee7-wildfly</module>
-        <!--<module>demo</module>-->
+        <module>demo</module>
     </modules>
 </project>
