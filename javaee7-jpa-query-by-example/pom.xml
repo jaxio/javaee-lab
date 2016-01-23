@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jaxio</groupId>
     <artifactId>javaee7-jpa-query-by-example</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>JavaEE7 JPA Query by Example</name>
     <url>https://github.com/jaxio/javaee-lab</url>
 
@@ -46,7 +45,7 @@
         <connection>scm:git:git://github.com/jaxio/javaee-lab.git</connection>
         <developerConnection>scm:git:git@github.com:jaxio/javaee-lab.git</developerConnection>
         <url>http://github.com/jaxio/javaee-lab/</url>
-        <tag>HEAD</tag>
+        <tag>javaee7-jpa-query-by-example-1.0.0</tag>
     </scm>
 
     <issueManagement>
