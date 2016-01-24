@@ -72,7 +72,7 @@ $output.file("pom.xml")##
         <!-- Version dependencies when used in multiple dependencies -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <celerio-maven-plugin.outputDir>${dollar}{project.basedir}</celerio-maven-plugin.outputDir>
-        <celerio-maven-plugin.version>4.0.3-SNAPSHOT</celerio-maven-plugin.version>
+        <celerio-maven-plugin.version>$generation.version</celerio-maven-plugin.version>
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- Variables substituted in resources file at build time -->
@@ -603,7 +603,7 @@ $output.file("pom.xml")##
                             <dependency>
                                 <groupId>com.jaxio.celerio.packs</groupId>
                                 <artifactId>pack-javaee7-wildfly</artifactId>
-                                <version>1.0.0</version>
+                                <version>1.0.1</version>
                             </dependency>
                         </dependencies>
                     </plugin>
