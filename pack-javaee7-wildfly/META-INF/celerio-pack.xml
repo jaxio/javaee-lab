@@ -2,7 +2,7 @@
 <celerioPack xmlns="http://www.jaxio.com/schema/celerio">
     <packName value="pack-javaee7-wildfly"/>
     <packDescription value="Pure Java EE 7 web application (no Spring inside) running on WildFly 10."/>
-    <packDescription2 value="Uses Hibernate, Hibernate Search, Lucene, JSF and PrimeFaces."/>
+    <packDescription2 value="Uses JPA, Hibernate, Hibernate Search, Lucene, JSF and PrimeFaces."/>
     <packCommand value="mvn -Pdb,metadata,gen generate-sources"/>
     <packCommandHelp value="To deploy on WildFly running on localhost, run: mvn wildfly:deploy"/>
     <projectLink value="https://github.com/jaxio/javaee-lab"/>
