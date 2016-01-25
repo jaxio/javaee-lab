@@ -1,9 +1,5 @@
 # Java EE 7 Celerio Templates + Demo
 
->>
->> NOTE: This is still a work in progress, we are looking for feedbacks from Java EE 7 experts.
->>
-
 For the demo, [Celerio, a code generator](http://www.jaxio.com/en/), reverses this
 [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
 and generate a full S-CRUD Java EE 7 web application.
@@ -43,11 +39,6 @@ It also relies on house-made solution for:
 * Latest [WildFly](http://wildfly.org/downloads/) version (we currently use 10.0.0-CR4)
 
 # How to run it
-
-## Step 0: build the JPA query by example lib
-
-    cd javaee7-jpa-query-by-example
-    mvn clean install
 
 ## Step 1: start WildFly
 
