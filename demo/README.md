@@ -2,7 +2,7 @@
 
 This demo project is convenient when developing the Java EE 7 code generation templates.
 
-It reverses this [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/02-create.sql) and
+It reverses this [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/demo/src/main/sql/h2/02-create.sql) and
 uses directly (not through jars) the following templates:
 
 * [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend)
