@@ -3,10 +3,10 @@
 These Celerio Generation Template Packs contain some source code templates that
 are interpreted by Celerio code generator in order to generate a full S-CRUD Java EE 7 web application.
 
-* [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend).
-* [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend).
+* [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend)
+* [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend)
 * [pack-javaee7-frontend-conversation](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend-conversation) - disabled by default
-* [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly).
+* [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly)
 
 S-CRUD means: **S**earch, **C**reate, **R**ead, **U**pdate, **D**elete
 

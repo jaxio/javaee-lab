@@ -5,17 +5,17 @@ This demo project is convenient when developing the Java EE 7 code generation te
 It reverses this [sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/02-create.sql) and
 uses directly (not through jars) the following templates:
 
-* [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend).
-* [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend).
+* [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend)
+* [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend)
 * [pack-javaee7-frontend-conversation](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend-conversation) - disabled by default
-* [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly).
+* [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly)
 
 You may edit the file [celerio-template-packs.xml](https://github.com/jaxio/javaee-lab/tree/master/demo/src/main/config/celerio-maven-plugin/celerio-template-packs.xml) 
 to choose between a **conversation-based front end or a simpler front end version**. By default, the simpler front end is enabled.
 
 The generated application depends on the following library, which for convenience is part of the JavaEE Lab github project.
 
-* [javaee7-jpa-query-by-example](https://github.com/jaxio/javaee-lab/tree/master/javaee7-jpa-query-by-example).
+* [javaee7-jpa-query-by-example](https://github.com/jaxio/javaee-lab/tree/master/javaee7-jpa-query-by-example)
  
 The generated application runs on WildFly 10, it is a pure Java EE 7 application, it relies on:
 
