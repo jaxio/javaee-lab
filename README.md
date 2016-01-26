@@ -1,4 +1,4 @@
-## Celerio Generation Template Pack: Java EE 7 web application
+## Celerio Generation Template Packs: Java EE 7 web application
 
 These Celerio Generation Template Packs contain some source code templates that
 are interpreted by Celerio code generator in order to generate a full S-CRUD Java EE 7 web application.
