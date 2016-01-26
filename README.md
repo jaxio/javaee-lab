@@ -1,25 +1,15 @@
-# Java EE 7 Celerio Templates + Demo
+## Celerio Generation Template Pack: Java EE 7 web application
 
-For the demo, [Celerio, a code generator](http://www.jaxio.com/en/), reverses this
-[sample SQL schema](https://github.com/jaxio/javaee-lab/tree/master/src/main/sql/h2/01-create.sql) 
-and generate a full S-CRUD Java EE 7 web application.
-
-S-CRUD means: **S**earch, **C**reate, **R**ead, **U**pdate, **D**elete
-
-The code generation templates that Celerio interprets to generate the demo web application are present in the following folder:
+These Celerio Generation Template Packs contain some source code templates that
+are interpreted by Celerio code generator in order to generate a full S-CRUD Java EE 7 web application.
 
 * [pack-javaee7-backend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-backend).
 * [pack-javaee7-frontend](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend).
 * [pack-javaee7-frontend-conversation](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-frontend-conversation) - disabled by default
 * [pack-javaee7-wildfly](https://github.com/jaxio/javaee-lab/tree/master/pack-javaee7-wildfly).
 
-You may edit the file [celerio-template-packs.xml](https://github.com/jaxio/javaee-lab/tree/master/demo/src/main/config/celerio-maven-plugin/celerio-template-packs.xml) 
-to choose between a **conversation-based front end or a simpler front end version**. By default, the simpler front end is enabled.
+S-CRUD means: **S**earch, **C**reate, **R**ead, **U**pdate, **D**elete
 
-The generated application depends on the following library, which for convenience is part of the JavaEE Lab github project.
-
-* [javaee7-jpa-query-by-example](https://github.com/jaxio/javaee-lab/tree/master/javaee7-jpa-query-by-example).
- 
 The generated application runs on WildFly 10, it is a pure Java EE 7 application, it relies on:
 
 * JPA with Hibernate
@@ -28,50 +18,29 @@ The generated application runs on WildFly 10, it is a pure Java EE 7 application
 * Primefaces 5.3 / Omnifaces 2.1
 * Shiro for authentication
 
-It also relies on house-made solution for:
-
-* JSF conversation (depending on if you choose this front-end version or not)
-
-# Requirements
+## Requirements
 
 * Java 8
 * Maven 3.1.1
 * Latest [WildFly](http://wildfly.org/downloads/) version (we currently use 10.0.0-CR4)
 
-# How to run it
+## Generate a Java EE 7 web application
 
-## Step 1: start WildFly
+This pack is part of Celerio distribution.
 
-From wildfly distribution root folder, run:
+Have already Maven 3 and Java 1.8 installed ?
 
-    ./bin/standalone.sh
-    
-## Step 2: reverse the sample SQL schema and generate the source code
-    
-From this folder run:
+To generate an application from these packs simply execute:
 
-    cd demo
-    mvn -Pdb,metadata,gen generate-sources
+    mvn com.jaxio.celerio:bootstrap-maven-plugin:4.0.4:bootstrap
 
-## Step 3: deploy on WildFly
+Please refer to [Celerio Documentation](http://www.jaxio.com/documentation/celerio) for more details on Celerio.
 
-From the demo folder:
-
-    mvn wildfly:undeploy  <== if you deployed previously, undeploy it first
+Once generated, to deploy it on WildFly 10, assuming it is running on localhost, execute from your generated app root folder:
 
     mvn wildfly:deploy
 
-## Step 4: access the app and play
-
-    http://localhost:8080/demo
-
-## Extra tip: delete generated code
-
-From the demo folder:
-
-    mvn -PcleanGen clean
-
-# Contribute
+## Contribute
 
 You may contribute in several ways:
 
@@ -81,8 +50,7 @@ You may contribute in several ways:
 
 You may of course [report issues](https://github.com/jaxio/javaee-lab/issues) and/or submit pull requests.
 
-# Limitations
+## Limitations
 
 * Cache does not seem to work (ehcache)
 * LocalDate not supported by PrimeFaces p:calendar, even with our converter!
-
