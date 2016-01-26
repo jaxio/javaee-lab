@@ -26,7 +26,7 @@ The generated application runs on WildFly 10, it is a pure Java EE 7 application
 
 ## Generate a Java EE 7 web application
 
-This pack is part of Celerio distribution.
+These packs is part of Celerio distribution.
 
 Have already Maven 3 and Java 1.8 installed ?
 
