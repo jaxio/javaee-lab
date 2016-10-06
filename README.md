@@ -32,7 +32,7 @@ Have already Maven 3 and Java 1.8 installed ?
 
 To generate an application from these packs simply execute:
 
-    mvn com.jaxio.celerio:bootstrap-maven-plugin:4.0.10:bootstrap
+    mvn com.jaxio.celerio:bootstrap-maven-plugin:4.0.12:bootstrap
 
 Please refer to [Celerio Documentation](http://www.jaxio.com/documentation/celerio) for more details on Celerio.
 
